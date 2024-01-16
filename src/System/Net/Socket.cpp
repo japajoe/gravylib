@@ -40,6 +40,16 @@ namespace Gravy::System::Net
             s.fd = -1;
     #endif
     }
+
+    void Socket::Close()
+    {
+    #ifdef _WIN32
+        closesocket(s.fd);
+    #else
+        close(s.fd);
+    #endif
+        s.fd = -1;
+    }
     
     bool Socket::Bind(const std::string &bindAddress, uint16_t port)
     {
@@ -125,16 +135,6 @@ namespace Gravy::System::Net
     #else
         return send(s.fd, buffer, size, 0);
     #endif
-    }
-
-    void Socket::Close()
-    {
-    #ifdef _WIN32
-        closesocket(s.fd);
-    #else
-        close(s.fd);
-    #endif
-        s.fd = -1;
     }
 
     int32_t Socket::GetFileDescriptor() const

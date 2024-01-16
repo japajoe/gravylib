@@ -38,10 +38,10 @@ namespace Gravy::System::Net
         if(responseHandler == nullptr)
             throw HttpClientException("No HttpClientResponseHandler has been assigned");
 
-#ifdef GRAVY_USE_OPENSSL
+    #ifdef GRAVY_USE_OPENSSL
         if(sslContext.GetContext() == nullptr)
             throw HttpClientException("SSL context is not initialized");
-#endif
+    #endif
 
         URI uri(url);
 
@@ -74,7 +74,7 @@ namespace Gravy::System::Net
         std::string request = sb.ToString();
         char *pRequest = const_cast<char*>(request.data());
 
-#ifdef GRAVY_USE_OPENSSL
+    #ifdef GRAVY_USE_OPENSSL
         if(String::Contains(url, "https://"))
         {
             SslStream sslStream(socket, &sslContext, hostInfo.name.c_str());
@@ -87,19 +87,19 @@ namespace Gravy::System::Net
             HttpClientWrite(&socket, pRequest, request.size());
             HttpClientRead(&socket, responseHandler, userData);
         }
-#else
+    #else
         HttpClientWrite(&socket, pRequest, request.size());
         HttpClientRead(&socket, responseHandler, userData);
-#endif
+    #endif
         socket.Close();
     }
 
     void HttpClient::Close()
     {
-#ifdef GRAVY_USE_OPENSSL
+    #ifdef GRAVY_USE_OPENSSL
         if(sslContext.GetContext() != nullptr)
             sslContext.Dispose();
-#endif
+    #endif
     }
 
 #ifdef GRAVY_USE_OPENSSL

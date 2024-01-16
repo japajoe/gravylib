@@ -147,6 +147,7 @@ namespace Gravy::System::Net
     public:
         Socket();
         Socket(SocketType type, AddressFamily addressFamily);
+        void Close();
         bool Bind(const std::string &address, uint16_t port);
         bool Connect(const std::string &ip, uint16_t port);
         bool Listen(int32_t backlog);
@@ -154,7 +155,6 @@ namespace Gravy::System::Net
         bool SetOption(int level, int option, const void *value, uint32_t valueSize);
         ssize_t Read(void *buffer, size_t size);
         ssize_t Write(const void *buffer, size_t size);
-        void Close();
         int32_t GetFileDescriptor() const;
     };
 };

@@ -13,9 +13,9 @@ namespace Gravy::System::Net
     class HttpClient
     {
     private:
-#ifdef GRAVY_USE_OPENSSL
+    #ifdef GRAVY_USE_OPENSSL
         SslContext sslContext;
-#endif
+    #endif
         HttpClientResponseHandler responseHandler;
         void *userData;
     public:
