@@ -5,6 +5,141 @@
 
 namespace Gravy::System
 {
+    String::String()
+    {
+
+    }
+
+    String::String(const std::string &str)
+    {
+        this->value = str;
+    }
+
+    String::String(const char *str)
+    {
+        this->value = std::string(str);
+    }
+
+    String& String::operator=(const char* str) 
+    {
+        value = str;
+        return *this;
+    }
+
+    String& String::operator=(const String& other) 
+    {
+        if (this != &other)
+            value = other.value;
+        return *this;
+    }
+
+    // Concatenation operator overload
+    String String::operator+(const String& other) const 
+    {
+        String result = *this;
+        result.value += other.value;
+        return result;
+    }
+
+    String& String::operator+=(const String& other)
+    {
+        value += other.value;
+        return *this;        
+    }
+
+    bool String::operator==(const String& other) const 
+    {
+        return value == other.value;
+    }
+
+    bool String::operator!=(const String& other) const 
+    {
+        return value != other.value;
+    }
+
+    std::string String::GetValue() const
+    {
+        return value;
+    }
+
+    size_t String::GetLength() const
+    {
+        return value.size();
+    }
+
+    std::vector<String> String::Split(char separator)
+    {
+        std::vector<String> substrings;
+        std::istringstream ss(value);
+        std::string token;
+
+        while (std::getline(ss, token, separator)) 
+        {
+            substrings.push_back(token);
+        }
+
+        return substrings;
+    }
+
+    String String::Trim()
+    {
+        return String::Trim(value);
+    }
+
+    String String::TrimStart()
+    {
+        return String::TrimStart(value);
+    }
+
+    String String::TrimEnd()
+    {
+        return String::TrimEnd(value);
+    }
+
+    bool String::StartsWith(const std::string &suffix)
+    {
+        return String::StartsWith(value, suffix);
+    }
+
+    bool String::EndsWith(const std::string &suffix)
+    {
+        return String::EndsWith(value, suffix);
+    }
+
+    bool String::Contains(const std::string &needle)
+    {
+        return String::Contains(value, needle);
+    }
+
+    void String::Replace(const std::string &target, const std::string &replacement)
+    {
+        String::Replace(value, target, replacement);
+    }
+
+    String String::ToLower()
+    {
+        return String::ToLower(value);
+    }
+
+    String String::ToUpper()
+    {
+        return String::ToUpper(value);
+    }
+
+    std::vector<std::string> String::Split(const std::string &str, char separator)
+    {
+        std::vector<std::string> substrings;
+        std::istringstream ss(str);
+        std::string token;
+
+        while (std::getline(ss, token, separator)) 
+        {
+            substrings.push_back(token);
+        }
+
+        return substrings;
+    }
+
     std::string String::Trim(const std::string &str)
     {
         // Find the first non-whitespace character from the beginning
@@ -85,5 +220,11 @@ namespace Gravy::System
         std::string result = str;
         std::transform(result.begin(), result.end(), result.begin(), ::toupper);
         return result;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const String& str)
+    {
+        os << str.GetValue();
+        return os;
     }
 };

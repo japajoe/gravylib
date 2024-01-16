@@ -1,7 +1,6 @@
 #include "System/Math.hpp"
 #include <algorithm>
-#include <stdlib.h>
-#include <math.h>
+#include <cmath>
 
 namespace Gravy::System
 {
@@ -17,7 +16,7 @@ namespace Gravy::System
 
     double Math::Abs(double value)
     {
-        return abs(value);
+        return std::abs(value);
     }
 
     double Math::Clamp(double value, double min, double max)
@@ -31,12 +30,12 @@ namespace Gravy::System
 
     int32_t Math::FloorToInt(double value)
     {
-        return static_cast<int32_t>(floor(value));
+        return static_cast<int32_t>(std::floor(value));
     }
 
     double Math::Floor(double value)
     {
-        return floor(value);
+        return std::floor(value);
     }
 
     double Math::InverseLerp(double start, double end, double value)
@@ -51,32 +50,32 @@ namespace Gravy::System
 
     double Math::Sin(double x)
     {
-        return sinf(x);
+        return std::sin(x);
     }
 
     double Math::Cos(double x)
     {
-        return cosf(x);
+        return std::cos(x);
     }
 
     double Math::Sqrt(double x)
     {
-        return sqrt(x);
+        return std::sqrt(x);
     }
 
     double Math::Pow(double x, double y)
     {
-        return pow(x, y);
+        return std::pow(x, y);
     }
 
     double Math::Atan2(double x, double y)
     {
-        return atan2(x, y);
+        return std::atan2(x, y);
     }
 
     double Math::Acos(double x)
     {
-        return acos(x);
+        return std::acos(x);
     }
 
     double Math::DegreesToRadians(double degrees)
