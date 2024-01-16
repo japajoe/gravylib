@@ -2,7 +2,7 @@
 #define GRAVY_FILEINFO_HPP
 
 #include <string>
-#include "DateTime.hpp"
+#include "System/DateTime.hpp"
 
 namespace Gravy::System::IO
 {

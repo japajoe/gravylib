@@ -2,9 +2,9 @@
 #define GRAVY_SSLSTREAM_HPP
 
 #ifdef GRAVY_USE_OPENSSL
-#include "Socket.hpp"
-#include "SslContext.hpp"
-#include "SslException.hpp"
+#include "System/Net/Socket.hpp"
+#include "System/Net/SslContext.hpp"
+#include "System/Net/SslException.hpp"
 #include <openssl/ssl.h>
 
 namespace Gravy::System::Net

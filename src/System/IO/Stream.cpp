@@ -1,4 +1,4 @@
-#include "Stream.hpp"
+#include "System/IO/Stream.hpp"
 
 namespace Gravy::System::IO
 {

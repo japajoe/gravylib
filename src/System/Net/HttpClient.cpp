@@ -1,11 +1,11 @@
-#include "HttpClient.hpp"
-#include "Gravy/System/String.hpp"
-#include "Gravy/System/URI.hpp"
-#include "Gravy/System/Math.hpp"
-#include "Gravy/System/StringBuilder.hpp"
-#include "Gravy/System/Net/Socket.hpp"
-#include "Gravy/System/Net/HostInfo.hpp"
-#include "Gravy/System/Net/SslStream.hpp"
+#include "System/Net/HttpClient.hpp"
+#include "System/String.hpp"
+#include "System/URI.hpp"
+#include "System/Math.hpp"
+#include "System/StringBuilder.hpp"
+#include "System/Net/Socket.hpp"
+#include "System/Net/HostInfo.hpp"
+#include "System/Net/SslStream.hpp"
 
 namespace Gravy::System::Net
 {

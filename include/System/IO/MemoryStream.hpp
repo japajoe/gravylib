@@ -1,7 +1,7 @@
 #ifndef GRAVY_MEMORYSTREAM_HPP
 #define GRAVY_MEMORYSTREAM_HPP
 
-#include "Stream.hpp"
+#include "System/IO/Stream.hpp"
 
 namespace Gravy::System::IO
 {

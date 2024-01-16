@@ -1,7 +1,7 @@
 #ifndef GRAVY_FILETIMEINFO_HPP
 #define GRAVY_FILETIMEINFO_HPP
 
-#include "FileInfo.hpp"
+#include "System/IO/FileInfo.hpp"
 
 namespace Gravy::System::IO
 {

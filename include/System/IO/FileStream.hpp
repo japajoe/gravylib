@@ -1,8 +1,8 @@
 #ifndef GRAVY_FILESTREAM_HPP
 #define GRAVY_FILESTREAM_HPP
 
-#include "Stream.hpp"
 #include <fstream>
+#include "System/IO/Stream.hpp"
 
 namespace Gravy::System::IO
 {

@@ -3,8 +3,8 @@
 
 #ifdef GRAVY_USE_OPENSSL
 
+#include "System/Net/SslException.hpp"
 #include <string>
-#include "SslException.hpp"
 #include <openssl/ssl.h>
 
 namespace Gravy::System::Net

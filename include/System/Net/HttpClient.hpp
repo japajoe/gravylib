@@ -2,9 +2,9 @@
 #define GRAVY_HTTPCLIENT_HPP
 
 #include <string>
-#include "SslContext.hpp"
 #include <exception>
 #include <functional>
+#include "System/Net/SslContext.hpp"
 
 namespace Gravy::System::Net
 {
