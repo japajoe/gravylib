@@ -10,7 +10,7 @@ A C++ utility library laid out in a similar manner as the C# standard library.
 - More...
 
 # Disclaimer
-By all means, don't use this library if you have high expectations. There are other libraries that have more features and are better maintained. I mainly made this library for my own use but I am happy to share it with anyone who is interested.
+Don't use this library if you have high expectations. There are other libraries that have more features and are better maintained. I mainly made this library for my own use but I am happy to share it with anyone who is interested.
 
 # Dependencies
 - C++ 17 or newer
