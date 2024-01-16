@@ -58,7 +58,7 @@ namespace Gravy::System::Net
         if(!HostInfo::Resolve(url, hostInfo))
             throw HttpClientException("Failed to resolve host from URL");
 
-        Socket socket(SocketType::Stream);
+        Socket socket(SocketType::Stream, AddressFamily::AFInet);
         
         if(!socket.Connect(hostInfo.ip, hostInfo.port))
         {

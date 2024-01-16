@@ -12,7 +12,7 @@ namespace Gravy::System::Net
         s.fd = -1;
     }
 
-    Socket::Socket(SocketType type)
+    Socket::Socket(SocketType type, AddressFamily addressFamily)
     {
         std::memset(&s, 0, sizeof(gravy_socket_t));
 
@@ -34,7 +34,7 @@ namespace Gravy::System::Net
                 break;
         }
 
-        s.fd = socket(AF_INET, socketType, 0);
+        s.fd = socket(static_cast<int>(addressFamily), socketType, 0);
     #ifdef _WIN32
         if(s.fd == INVALID_SOCKET)
             s.fd = -1;

@@ -7,7 +7,6 @@ namespace Gravy::System
 {
     String::String()
     {
-
     }
 
     String::String(const std::string &str)
