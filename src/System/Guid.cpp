@@ -1,5 +1,5 @@
 #include "System/Guid.hpp"
-#include "System/Math.hpp"
+#include "System/Random.hpp"
 #include <sstream>
 #include <regex>
 #include <iomanip>
@@ -12,7 +12,7 @@ namespace Gravy::System
         
         for(size_t i = 0; i < 16; ++i)
         {
-            uint8_t rand_byte = Math::RandomByte();
+            uint8_t rand_byte = Random::GetNextByte();
 
             if (i == 6)
                 rand_byte = (rand_byte & 0x0F) | 0x40; // set the version to 4
