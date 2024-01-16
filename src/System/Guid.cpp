@@ -22,9 +22,7 @@ namespace Gravy::System
             ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(rand_byte);
 
             if (i == 3 || i == 5 || i == 7 || i == 9) 
-            {
                 ss << "-";
-            }
         }
 
         Guid guid;
@@ -34,6 +32,9 @@ namespace Gravy::System
 
     bool Guid::TryParse(const std::string &str, Guid &result)
     {
+        if (str.size() != 36)
+            return false;  // Invalid length for a GUID
+
         static const std::regex reg("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[8-9a-bA-B][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$");
 
         if(std::regex_match(str, reg))
