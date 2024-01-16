@@ -33,19 +33,19 @@ endfunction()
 # Add sources
 file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/Gravy/System/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/Gravy/System/Collections/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/Gravy/System/IO/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/Gravy/System/Net/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Collections/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/IO/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
 )
 
 # Specify include Directory
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
-    "${PROJECT_SOURCE_DIR}/include/Gravy/System"
-    "${PROJECT_SOURCE_DIR}/include/Gravy/System/Collections"
-    "${PROJECT_SOURCE_DIR}/include/Gravy/System/IO"
-    "${PROJECT_SOURCE_DIR}/include/Gravy/System/Net"
+    "${PROJECT_SOURCE_DIR}/include/System"
+    "${PROJECT_SOURCE_DIR}/include/System/Collections"
+    "${PROJECT_SOURCE_DIR}/include/System/IO"
+    "${PROJECT_SOURCE_DIR}/include/System/Net"
 )
 
 #add_executable(${PROJECT_NAME} ${SOURCES})
