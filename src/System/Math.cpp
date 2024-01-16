@@ -61,17 +61,17 @@ namespace Gravy::System
         return static_cast<int32_t>(floor(value));
     }
 
-    double Math::Floor(const double& value)
+    double Math::Floor(double value)
     {
         return floor(value);
     }
 
-    double Math::InverseLerp(double start, double end, const double value)
+    double Math::InverseLerp(double start, double end, double value)
     {
         return (value - start) / (end - start);
     }
 
-    double Math::Lerp(double start, double end, const double percentage)
+    double Math::Lerp(double start, double end, double percentage)
     {
         return start + ((end-start) * percentage);	
     }

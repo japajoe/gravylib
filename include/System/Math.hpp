@@ -19,9 +19,9 @@ namespace Gravy::System
         static double Abs(double value);
         static double Clamp(double value, double min, double max);
         static int32_t FloorToInt(double value);
-        static double Floor(const double& value);
-        static double InverseLerp(double start, double end, const double value);
-        static double Lerp(double start, double end, const double percentage);
+        static double Floor(double value);
+        static double InverseLerp(double start, double end, double value);
+        static double Lerp(double start, double end, double percentage);
         static double RandomRange(double min, double max);
         static int32_t RandomRange(int32_t min, int32_t max);
         static uint8_t RandomByte();
