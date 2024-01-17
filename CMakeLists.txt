@@ -10,7 +10,7 @@ if(USE_OPENSSL EQUAL 1)
     find_package(OpenSSL REQUIRED)
     message(STATUS "Configuring for use with OpenSSL")
 else()
-    message(STATUS "Configuring to not use OpenSSL")
+    message(STATUS "Configuring for use without OpenSSL")
 endif()
 
 # Will add __FILENAME__ macros for all source files, which is the filename without full find_path
