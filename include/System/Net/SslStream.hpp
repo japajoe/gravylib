@@ -19,6 +19,7 @@ namespace Gravy::System::Net
         SslStream(Socket *socket, SslContext *sslContext);
         //Used to create an SslStream for outgoing connections
         SslStream(Socket *socket, SslContext *sslContext, const char *hostName);
+        int32_t ReadByte();
         ssize_t Read(void *buffer, size_t size);
         ssize_t Write(const void *buffer, size_t size);
         void Close();

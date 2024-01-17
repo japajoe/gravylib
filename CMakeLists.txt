@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.5.1)
 project(gravy)
 
 #To exclude OpenSSL set USE_OPENSSL to 0
-#HttpClient will not be able to make secure requests
 set(USE_OPENSSL 1)
 
 if(USE_OPENSSL EQUAL 1)
@@ -37,7 +36,8 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/Collections/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/IO/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/System/Text*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Text/*.cpp"
+    #"${PROJECT_SOURCE_DIR}/examples/*.cpp"
 )
 
 # Specify include Directory
@@ -58,7 +58,6 @@ if(USE_OPENSSL EQUAL 1)
     target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs ${OPENSSL_LIBRARIES})
 else()
-    message(STATUS "Not using OpenSSL")
     target_include_directories(${PROJECT_NAME} PRIVATE)
     target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs)
 endif()

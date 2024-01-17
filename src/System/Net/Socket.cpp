@@ -119,6 +119,19 @@ namespace Gravy::System::Net
     #endif
     }
 
+    int32_t Socket::ReadByte()
+    {
+        unsigned char b = 0;
+    #ifdef _WIN32
+        if(recv(s.fd, (char*)b, 1, 0) > 0)
+            return static_cast<int32_t>(b);
+    #else
+        if(recv(s.fd, &b, 1, 0) > 0)
+            return static_cast<int32_t>(b);
+    #endif
+        return -1;
+    }
+
     ssize_t Socket::Read(void *buffer, size_t size)
     {
     #ifdef _WIN32

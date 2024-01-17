@@ -54,6 +54,16 @@ namespace Gravy::System::Net
         }
     }
 
+    int32_t SslStream::ReadByte()
+    {
+        if(!ssl)
+            return -1;
+        unsigned char b = 0;
+        if(SSL_read(ssl, &b, 1) > 0)
+            return static_cast<int32_t>(b);
+        return -1;
+    }
+
     ssize_t SslStream::Read(void *buffer, size_t size)
     {
         if(ssl)

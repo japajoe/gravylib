@@ -153,6 +153,7 @@ namespace Gravy::System::Net
         bool Listen(int32_t backlog);
         bool Accept(Socket &socket);
         bool SetOption(int level, int option, const void *value, uint32_t valueSize);
+        int32_t ReadByte();
         ssize_t Read(void *buffer, size_t size);
         ssize_t Write(const void *buffer, size_t size);
         int32_t GetFileDescriptor() const;
