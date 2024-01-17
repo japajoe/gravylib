@@ -31,6 +31,12 @@ namespace Gravy::System::Net
         s.fd = -1;
     }
 
+    Socket::Socket(Socket *socket)
+    {
+        InitializeWinsock2();
+        std::memcpy(this, socket, sizeof(Socket));
+    }
+
     Socket::Socket(SocketType type, AddressFamily addressFamily)
     {
         InitializeWinsock2();

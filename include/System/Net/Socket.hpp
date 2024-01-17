@@ -146,6 +146,7 @@ namespace Gravy::System::Net
         gravy_socket_t s;
     public:
         Socket();
+        Socket(Socket *socket);
         Socket(SocketType type, AddressFamily addressFamily);
         void Close();
         bool Bind(const std::string &address, uint16_t port);
