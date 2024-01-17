@@ -5,9 +5,10 @@ A C++ utility library laid out in a similar manner as the C# standard library.
 - Methods for string manipulation
 - Utilities for converting from/to binary and binary serialization
 - File and directory handling
-- Create sockets for listening or connection to servers
+- Resource packing (virtual file system)
+- Sockets for listening or connecting to servers
 - Http client
-- More...
+- Etc...
 
 # Disclaimer
 Don't use this library if you have high expectations. There are other libraries that have more features and are better maintained. I mainly made this library for my own use but I am happy to share it with anyone who is interested.

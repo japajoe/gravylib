@@ -31,6 +31,7 @@
 #include "System/IO/Stream.hpp"
 #include "System/IO/Directory.hpp"
 #include "System/IO/File.hpp"
+#include "System/IO/ResourcePack.hpp"
 
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;

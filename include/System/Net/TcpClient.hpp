@@ -14,6 +14,7 @@ namespace Gravy::System::Net
     public:
         TcpClient();
         TcpClient(const Socket &socket);
+        bool Connect(const std::string &ip, uint16_t port);
         void Close();
         Socket *GetSocket();
     };
