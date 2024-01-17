@@ -69,5 +69,4 @@ define_file_basename_for_sources(${PROJECT_NAME})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION /usr/local/lib)
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/  # Assuming your include files are in a folder named "include"
-        DESTINATION /usr/local/include/${PROJECT_NAME})
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION /usr/local/include/Gravy)

@@ -74,7 +74,8 @@ namespace Gravy::System
 
         while (std::getline(ss, token, separator)) 
         {
-            substrings.push_back(token);
+            if(token.size() > 0)
+                substrings.push_back(token);
         }
 
         return substrings;
@@ -133,7 +134,8 @@ namespace Gravy::System
 
         while (std::getline(ss, token, separator)) 
         {
-            substrings.push_back(token);
+            if(token.size() > 0)
+                substrings.push_back(token);
         }
 
         return substrings;
