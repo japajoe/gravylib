@@ -1,5 +1,5 @@
-#include "System/IO/FileInfo.hpp"
-#include "System/IO/File.hpp"
+#include "FileInfo.hpp"
+#include "File.hpp"
 #include <iostream>
 
 // Check if the C++17 filesystem is available

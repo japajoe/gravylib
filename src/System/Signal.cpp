@@ -1,4 +1,4 @@
-#include "System/Signal.hpp"
+#include "Signal.hpp"
 
 namespace Gravy::System
 {

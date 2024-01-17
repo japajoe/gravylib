@@ -1,4 +1,4 @@
-#include "System/String.hpp"
+#include "String.hpp"
 #include <sstream>
 #include <cctype> // For std::isspace
 #include <algorithm> // For std::transform

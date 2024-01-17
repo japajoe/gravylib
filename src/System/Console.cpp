@@ -1,5 +1,5 @@
-#include "System/Console.hpp"
-#include "System/DateTime.hpp"
+#include "Console.hpp"
+#include "DateTime.hpp"
 #include <iostream>
 #include <map>
 

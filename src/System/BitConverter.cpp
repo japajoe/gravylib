@@ -1,4 +1,4 @@
-#include "System/BitConverter.hpp"
+#include "BitConverter.hpp"
 #include <cstring>
 
 namespace Gravy::System

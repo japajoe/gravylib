@@ -1,7 +1,7 @@
 #ifndef GRAVY_NETWORKSTREAM_HPP
 #define GRAVY_NETWORKSTREAM_HPP
 
-#include "System/Net/Socket.hpp"
+#include "Socket.hpp"
 
 namespace Gravy::System::Net
 {

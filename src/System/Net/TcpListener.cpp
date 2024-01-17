@@ -1,5 +1,5 @@
-#include "System/Net/TcpListener.hpp"
-#include "System/Console.hpp"
+#include "TcpListener.hpp"
+#include "Console.hpp"
 
 namespace Gravy::System::Net
 {

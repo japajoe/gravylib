@@ -1,5 +1,5 @@
-#include "System/BinaryStream.hpp"
-#include "System/BitConverter.hpp"
+#include "BinaryStream.hpp"
+#include "BitConverter.hpp"
 #include <cstring>
 
 namespace Gravy::System

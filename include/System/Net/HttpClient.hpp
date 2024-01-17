@@ -4,7 +4,7 @@
 #include <string>
 #include <exception>
 #include <functional>
-#include "System/Net/SslContext.hpp"
+#include "SslContext.hpp"
 
 namespace Gravy::System::Net
 {

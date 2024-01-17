@@ -1,4 +1,4 @@
-#include "System/Net/SslStream.hpp"
+#include "SslStream.hpp"
 #include <exception>
 
 #ifdef GRAVY_USE_OPENSSL

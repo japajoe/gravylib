@@ -1,4 +1,4 @@
-#include "System/Net/SslContext.hpp"
+#include "SslContext.hpp"
 
 #ifdef GRAVY_USE_OPENSSL
 namespace Gravy::System::Net

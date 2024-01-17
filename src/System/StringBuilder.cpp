@@ -1,4 +1,4 @@
-#include "System/StringBuilder.hpp"
+#include "StringBuilder.hpp"
 
 namespace Gravy::System
 {

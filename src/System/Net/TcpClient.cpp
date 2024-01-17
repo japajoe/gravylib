@@ -1,4 +1,4 @@
-#include "System/Net/TcpClient.hpp"
+#include "TcpClient.hpp"
 
 namespace Gravy::System::Net
 {

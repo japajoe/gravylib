@@ -1,4 +1,4 @@
-#include "System/Net/NetworkStream.hpp"
+#include "NetworkStream.hpp"
 
 namespace Gravy::System::Net
 {

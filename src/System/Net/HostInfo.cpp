@@ -1,7 +1,7 @@
-#include "System/Net/HostInfo.hpp"
-#include "System/Net/Socket.hpp"
-#include "System/String.hpp"
-#include "System/URI.hpp"
+#include "HostInfo.hpp"
+#include "Socket.hpp"
+#include "String.hpp"
+#include "URI.hpp"
 
 namespace Gravy::System::Net
 {

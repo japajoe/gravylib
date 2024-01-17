@@ -1,7 +1,7 @@
 #ifndef GRAVY_TCPCLIENT_HPP
 #define GRAVY_TCPCLIENT_HPP
 
-#include "System/Net/Socket.hpp"
+#include "Socket.hpp"
 #include <cstdint>
 #include <string>
 

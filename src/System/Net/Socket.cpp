@@ -1,4 +1,4 @@
-#include "System/Net/Socket.hpp"
+#include "Socket.hpp"
 
 #ifndef SOCKET_ERROR
 #define SOCKET_ERROR (-1)
@@ -6,14 +6,34 @@
 
 namespace Gravy::System::Net
 {
+#ifdef _WIN32
+    static bool winsockInitialized = false;
+#endif
+
+    static void InitializeWinsock2()
+    {
+    #ifdef _WIN32
+        if(winsockInitialized)
+            return;
+        WSADATA wsaData;
+        if (WSAStartup(MAKEWORD(2, 2), &wsaData) == 0) 
+        {
+            printf("Failed to initialize winsock\n")
+            winsockInitialized = true;
+        }
+    #endif        
+    }
+
     Socket::Socket()
     {
+        InitializeWinsock2();
         std::memset(&s, 0, sizeof(gravy_socket_t));
         s.fd = -1;
     }
 
     Socket::Socket(SocketType type, AddressFamily addressFamily)
     {
+        InitializeWinsock2();
         std::memset(&s, 0, sizeof(gravy_socket_t));
 
         int socketType = SOCK_STREAM;

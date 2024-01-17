@@ -1,4 +1,4 @@
-#include "System/IO/MemoryStream.hpp"
+#include "MemoryStream.hpp"
 
 namespace Gravy::System::IO
 {

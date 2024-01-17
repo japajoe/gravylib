@@ -1,4 +1,4 @@
-#include "System/Random.hpp"
+#include "Random.hpp"
 #include <random>
 
 namespace Gravy::System

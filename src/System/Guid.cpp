@@ -1,5 +1,5 @@
-#include "System/Guid.hpp"
-#include "System/Random.hpp"
+#include "Guid.hpp"
+#include "Random.hpp"
 #include <sstream>
 #include <regex>
 #include <iomanip>

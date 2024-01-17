@@ -2,7 +2,7 @@
 #define GRAVY_FILESTREAM_HPP
 
 #include <fstream>
-#include "System/IO/Stream.hpp"
+#include "Stream.hpp"
 
 namespace Gravy::System::IO
 {

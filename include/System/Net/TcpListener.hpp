@@ -1,8 +1,8 @@
 #ifndef GRAVY_TCPLISTENER_HPP
 #define GRAVY_TCPLISTENER_HPP
 
-#include "System/Net/Socket.hpp"
-#include "System/Net/TcpClient.hpp"
+#include "Socket.hpp"
+#include "TcpClient.hpp"
 #include <cstdint>
 #include <string>
 
