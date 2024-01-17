@@ -3,7 +3,7 @@
 
 #ifdef GRAVY_USE_OPENSSL
 
-#include "System/Net/SslException.hpp"
+#include "SslException.hpp"
 #include <string>
 #include <openssl/ssl.h>
 
