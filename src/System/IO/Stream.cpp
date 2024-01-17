@@ -14,17 +14,12 @@ namespace Gravy::System::IO
 
     }
 
-    std::string Stream::Read(size_t size)
-    {
-        return "";
-    }
-
-    size_t Stream::Read(void *buffer, size_t offset, size_t size)
+    size_t Stream::Read(void *buffer, size_t size)
     {
         return 0;
     }
 
-    size_t Stream::Write(void *buffer, size_t offset, size_t size)
+    size_t Stream::Write(const void *buffer, size_t size)
     {
         return 0;
     }
@@ -49,7 +44,7 @@ namespace Gravy::System::IO
         return size;
     }
 
-    void Stream::Dispose()
+    void Stream::Close()
     {
 
     }

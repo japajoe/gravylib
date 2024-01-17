@@ -63,26 +63,10 @@ namespace Gravy::System::IO
 
     FileStream::~FileStream()
     {
-        Dispose();
+        Close();
     }
 
-    std::string FileStream::Read(size_t size)
-    {
-        std::string data(size, '\0');
-        file.read(&data[0], size);
-        std::streamsize bytesRead = file.gcount();
-
-        if (bytesRead < static_cast<std::streamsize>(size))
-        {
-            // If fewer bytes were read than requested, update the stream size accordingly
-            size = static_cast<size_t>(bytesRead);
-        }
-
-        readPosition = file.tellg();
-        return data.substr(0, size);
-    }
-
-    size_t FileStream::Read(void *buffer, size_t offset, size_t size)
+    size_t FileStream::Read(void *buffer, size_t size)
     {
         // Check if the file is at the end before attempting to read
         if (file.peek() == EOF)
@@ -91,14 +75,14 @@ namespace Gravy::System::IO
             return 0;
         }
 
-        file.read(static_cast<char *>(buffer) + offset, size);
+        file.read(static_cast<char *>(buffer), size);
         readPosition = file.tellg();
         return file.gcount();
     }
 
-    size_t FileStream::Write(void *buffer, size_t offset, size_t size)
+    size_t FileStream::Write(const void *buffer, size_t size)
     {
-        file.write(static_cast<const char *>(buffer) + offset, size);
+        file.write(static_cast<const char *>(buffer), size);
         writePosition = file.tellp();
         return size;
     }
@@ -133,7 +117,7 @@ namespace Gravy::System::IO
         return readPosition;
     }
 
-    void FileStream::Dispose()
+    void FileStream::Close()
     {
         if (file.is_open())
         {

@@ -9,7 +9,7 @@ namespace Gravy::System::Net
         this->ssl = nullptr;
     }
 
-    SslStream::SslStream(Socket socket, SslContext *sslContext, const char *hostName)
+    SslStream::SslStream(Socket *socket, SslContext *sslContext)
     {
         if(sslContext)
         {
@@ -18,7 +18,28 @@ namespace Gravy::System::Net
             if(ssl == nullptr)
                 throw SslException("Failed to create SSL instance");
 
-            SSL_set_fd(ssl, socket.GetFileDescriptor());
+            SSL_set_fd(ssl, socket->GetFileDescriptor());
+
+            if (SSL_accept(ssl) <= 0) 
+            {
+                SSL_shutdown(ssl);
+                SSL_free(ssl);
+                ssl = nullptr;
+                throw SslException("Failed to SSL accept");
+            }
+        }
+    }
+
+    SslStream::SslStream(Socket *socket, SslContext *sslContext, const char *hostName)
+    {
+        if(sslContext)
+        {
+            ssl = SSL_new(sslContext->GetContext());
+
+            if(ssl == nullptr)
+                throw SslException("Failed to create SSL instance");
+
+            SSL_set_fd(ssl, socket->GetFileDescriptor());
             
             if(hostName)
                 SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, (void*)hostName);

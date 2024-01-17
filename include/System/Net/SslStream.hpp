@@ -15,7 +15,10 @@ namespace Gravy::System::Net
         SSL *ssl;
     public:
         SslStream();
-        SslStream(Socket socket, SslContext *sslContext, const char *hostName = nullptr);
+        //Used to create an SslStream for incoming connections
+        SslStream(Socket *socket, SslContext *sslContext);
+        //Used to create an SslStream for outgoing connections
+        SslStream(Socket *socket, SslContext *sslContext, const char *hostName);
         ssize_t Read(void *buffer, size_t size);
         ssize_t Write(const void *buffer, size_t size);
         void Close();

@@ -77,7 +77,7 @@ namespace Gravy::System::Net
     #ifdef GRAVY_USE_OPENSSL
         if(String::Contains(url, "https://"))
         {
-            SslStream sslStream(socket, &sslContext, hostInfo.name.c_str());
+            SslStream sslStream(&socket, &sslContext, hostInfo.name.c_str());
             HttpClientWrite(&sslStream, pRequest, request.size());
             HttpClientRead(&sslStream, responseHandler, userData);
             sslStream.Close();

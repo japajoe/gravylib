@@ -83,11 +83,10 @@ namespace Gravy::System::IO
     public:
         FileStream(const std::string &filepath, FileMode mode, FileAccess access);
         ~FileStream() override;
-        std::string Read(size_t size) override;
-        size_t Read(void *buffer, size_t offset, size_t size) override;
-        size_t Write(void *buffer, size_t offset, size_t size) override;
+        size_t Read(void *buffer, size_t size) override;
+        size_t Write(const void *buffer, size_t size) override;
         ssize_t Seek(ssize_t offset, SeekOrigin origin) override;
-        void Dispose() override;
+        void Close() override;
     };
 };
 
