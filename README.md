@@ -15,7 +15,7 @@ Don't use this library if you have high expectations. There are other libraries 
 
 # Dependencies
 - C++ 17 or newer
-- OpenSSL (optional)
+- OpenSSL
 
 # Building
 I develop on Linux but I try my best to make this library compatible with Windows and Mac. However, I do not have the means to test on all platforms so you're on your own if you want to build for anything other than Linux.

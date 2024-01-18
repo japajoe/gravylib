@@ -1,7 +1,6 @@
 #include "SslStream.hpp"
 #include <exception>
 
-#ifdef GRAVY_USE_OPENSSL
 namespace Gravy::System::Net
 {
     SslStream::SslStream()
@@ -88,4 +87,3 @@ namespace Gravy::System::Net
         }
     }
 };
-#endif //GRAVY_USE_OPENSSL

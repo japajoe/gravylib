@@ -2,15 +2,7 @@ cmake_minimum_required(VERSION 3.5.1)
 
 project(gravy)
 
-#To exclude OpenSSL set USE_OPENSSL to 0
-set(USE_OPENSSL 1)
-
-if(USE_OPENSSL EQUAL 1)
-    find_package(OpenSSL REQUIRED)
-    message(STATUS "Configuring for use with OpenSSL")
-else()
-    message(STATUS "Configuring for use without OpenSSL")
-endif()
+find_package(OpenSSL REQUIRED)
 
 # Will add __FILENAME__ macros for all source files, which is the filename without full find_path
 function(define_file_basename_for_sources targetname)
@@ -36,7 +28,6 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/Collections/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/IO/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
-    "${PROJECT_SOURCE_DIR}/src/System/Text/*.cpp"
     #"${PROJECT_SOURCE_DIR}/examples/*.cpp"
 )
 
@@ -53,14 +44,8 @@ include_directories(
 #add_executable(${PROJECT_NAME} ${SOURCES})
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-if(USE_OPENSSL EQUAL 1)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE GRAVY_USE_OPENSSL)
-    target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs ${OPENSSL_LIBRARIES})
-else()
-    target_include_directories(${PROJECT_NAME} PRIVATE)
-    target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs)
-endif()
+target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs ${OPENSSL_LIBRARIES})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

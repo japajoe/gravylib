@@ -1,8 +1,6 @@
 #ifndef GRAVY_SSLCONTEXT_HPP
 #define GRAVY_SSLCONTEXT_HPP
 
-#ifdef GRAVY_USE_OPENSSL
-
 #include "SslException.hpp"
 #include <string>
 #include <openssl/ssl.h>
@@ -21,7 +19,5 @@ namespace Gravy::System::Net
         SSL_CTX *GetContext();
     };
 };
-
-#endif //GRAVY_USE_OPENSSL
 
 #endif

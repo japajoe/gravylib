@@ -9,10 +9,8 @@
 
 namespace Gravy::System::Net
 {
-#ifdef GRAVY_USE_OPENSSL
     static void HttpClientWrite(SslStream *stream, const void *data, size_t dataSize);
     static void HttpClientRead(SslStream *stream, const HttpClientResponseHandler &responseHandler, void *userData);
-#endif    
     static void HttpClientWrite(Socket *socket, const void *data, size_t dataSize);
     static void HttpClientRead(Socket *socket, const HttpClientResponseHandler &responseHandler, void *userData);
 
@@ -38,10 +36,8 @@ namespace Gravy::System::Net
         if(responseHandler == nullptr)
             throw HttpClientException("No HttpClientResponseHandler has been assigned");
 
-    #ifdef GRAVY_USE_OPENSSL
         if(sslContext.GetContext() == nullptr)
             throw HttpClientException("SSL context is not initialized");
-    #endif
 
         URI uri(url);
 
@@ -74,7 +70,6 @@ namespace Gravy::System::Net
         std::string request = sb.ToString();
         char *pRequest = const_cast<char*>(request.data());
 
-    #ifdef GRAVY_USE_OPENSSL
         if(String::Contains(url, "https://"))
         {
             SslStream sslStream(&socket, &sslContext, hostInfo.name.c_str());
@@ -87,22 +82,16 @@ namespace Gravy::System::Net
             HttpClientWrite(&socket, pRequest, request.size());
             HttpClientRead(&socket, responseHandler, userData);
         }
-    #else
-        HttpClientWrite(&socket, pRequest, request.size());
-        HttpClientRead(&socket, responseHandler, userData);
-    #endif
+
         socket.Close();
     }
 
     void HttpClient::Close()
     {
-    #ifdef GRAVY_USE_OPENSSL
         if(sslContext.GetContext() != nullptr)
             sslContext.Dispose();
-    #endif
     }
 
-#ifdef GRAVY_USE_OPENSSL
     void HttpClientWrite(SslStream *stream, const void *data, size_t dataSize)
     {
         size_t bytesSent = 0;
@@ -134,7 +123,6 @@ namespace Gravy::System::Net
             responseHandler(buffer, numBytes, userData);
         }
     }
-#endif
 
     void HttpClientWrite(Socket *socket, const void *data, size_t dataSize)
     {
