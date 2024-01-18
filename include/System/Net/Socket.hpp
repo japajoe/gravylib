@@ -157,6 +157,8 @@ namespace Gravy::System::Net
         int32_t ReadByte();
         ssize_t Read(void *buffer, size_t size);
         ssize_t Write(const void *buffer, size_t size);
+        ssize_t ReceiveFrom(void *buffer, size_t size);
+        ssize_t SendTo(const void *buffer, size_t size);
         int32_t GetFileDescriptor() const;
     };
 };

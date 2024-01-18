@@ -149,7 +149,7 @@ namespace Gravy::System::Net
     {
         unsigned char b = 0;
     #ifdef _WIN32
-        if(recv(s.fd, (char*)b, 1, 0) > 0)
+        if(recv(s.fd, (char*)&b, 1, 0) > 0)
             return static_cast<int32_t>(b);
     #else
         if(recv(s.fd, &b, 1, 0) > 0)
@@ -173,6 +173,28 @@ namespace Gravy::System::Net
         return send(s.fd, (char*)data, size, 0);
     #else
         return send(s.fd, buffer, size, 0);
+    #endif
+    }
+
+    //To do: figure out better way than just passing the ipv4 address
+    ssize_t Socket::ReceiveFrom(void *buffer, size_t size)
+    {
+        socklen_t clientLen = sizeof(s.address.ipv4);
+    #ifdef _WIN32
+        return recvfrom(s.fd, (char*)buffer, size, 0, reinterpret_cast<struct sockaddr*>(&s.address.ipv4), &clientLen);
+    #else
+        return recvfrom(s.fd, buffer, size, 0, reinterpret_cast<struct sockaddr*>(&s.address.ipv4), &clientLen);
+    #endif
+    }
+
+    //To do: figure out better way than just passing the ipv4 address
+    ssize_t Socket::SendTo(const void *buffer, size_t size)
+    {
+        socklen_t clientLen = sizeof(s.address.ipv4);
+    #ifdef _WIN32
+        return sendto(s.fd, (char*)buffer, size, 0, reinterpret_cast<struct sockaddr*>(&s.address.ipv4), clientLen);
+    #else
+        return sendto(s.fd, buffer, size, 0, reinterpret_cast<struct sockaddr*>(&s.address.ipv4), clientLen);
     #endif
     }
 
