@@ -28,6 +28,7 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/Collections/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/IO/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Runtime/*.cpp"
     #"${PROJECT_SOURCE_DIR}/examples/*.cpp"
 )
 
@@ -39,6 +40,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/include/System/IO"
     "${PROJECT_SOURCE_DIR}/include/System/Net"
     "${PROJECT_SOURCE_DIR}/include/System/Text"
+    "${PROJECT_SOURCE_DIR}/include/System/Runtime"
 )
 
 #add_executable(${PROJECT_NAME} ${SOURCES})

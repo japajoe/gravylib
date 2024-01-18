@@ -33,12 +33,14 @@
 #include "System/IO/Stream.hpp"
 #include "System/IO/Directory.hpp"
 #include "System/IO/File.hpp"
+#include "System/Runtime/DynamicLibrary.hpp"
 
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;
 using namespace Gravy::System::Diagnostics;
 using namespace Gravy::System::IO;
 using namespace Gravy::System::Net;
+using namespace Gravy::System::Runtime;
 using namespace Gravy::System::Text;
 
 #endif

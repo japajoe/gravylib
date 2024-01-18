@@ -8,6 +8,7 @@ A C++ utility library laid out in a similar manner as the C# standard library.
 - Resource packing (virtual file system)
 - Sockets for listening or connecting to servers
 - Http client
+- Dynamic loading of libraries
 - Etc...
 
 # Disclaimer
