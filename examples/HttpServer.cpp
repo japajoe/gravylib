@@ -1,7 +1,3 @@
-#ifndef GRAVY_USE_OPENSSL
-#define GRAVY_USE_OPENSSL
-#endif
-
 #include "System/Net/TcpListener.hpp"
 #include "System/Net/SslContext.hpp"
 #include "System/Net/SslStream.hpp"
