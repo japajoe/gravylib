@@ -86,5 +86,11 @@ namespace Gravy::System::Runtime
         }
     #endif
         return s;
-    }    
+    }
+
+    void *DynamicLibrary::GetHandle()
+    {
+        return handle;
+    }
+
 };

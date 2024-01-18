@@ -15,6 +15,7 @@ namespace Gravy::System::Runtime
         bool Load(const std::string &filePath);
         bool Unload();
         void *GetSymbol(const std::string &name);
+        void *GetHandle();
     };
 };
 
