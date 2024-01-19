@@ -2,7 +2,7 @@
 #include "BitConverter.hpp"
 #include <cstring>
 
-namespace Gravy::System
+namespace Gravy::System::IO
 {
     BinaryStream::BinaryStream(unsigned char *buffer, size_t bufferSize, size_t length)
     {

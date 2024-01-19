@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-namespace Gravy::System
+namespace Gravy::System::IO
 {
     class BinaryStream
     {
