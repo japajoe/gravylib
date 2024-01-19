@@ -3,16 +3,20 @@
 #include <sstream>
 #include <regex>
 #include <iomanip>
-
+#include <random>
+#include <chrono>
 namespace Gravy::System
 {
+    static std::mt19937 rgen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    static std::uniform_int_distribution<uint8_t> dist_byte(0, 255);
+
     Guid Guid::NewGuid()
     {
         std::stringstream ss;
         
         for(size_t i = 0; i < 16; ++i)
         {
-            uint8_t rand_byte = Random::GetNextByte();
+            uint8_t rand_byte = dist_byte(rgen);
 
             if (i == 6)
                 rand_byte = (rand_byte & 0x0F) | 0x40; // set the version to 4
