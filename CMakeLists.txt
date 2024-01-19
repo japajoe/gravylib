@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5.1)
 
 project(gravy)
 
+set(CMAKE_BUILD_TYPE Release)
+
 find_package(OpenSSL REQUIRED)
 
 # Will add __FILENAME__ macros for all source files, which is the filename without full find_path
@@ -29,6 +31,7 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/IO/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Runtime/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Text/*.cpp"
     #"${PROJECT_SOURCE_DIR}/examples/*.cpp"
 )
 
@@ -39,8 +42,8 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/include/System/Collections"
     "${PROJECT_SOURCE_DIR}/include/System/IO"
     "${PROJECT_SOURCE_DIR}/include/System/Net"
-    "${PROJECT_SOURCE_DIR}/include/System/Text"
     "${PROJECT_SOURCE_DIR}/include/System/Runtime"
+    "${PROJECT_SOURCE_DIR}/include/System/Text"
 )
 
 #add_executable(${PROJECT_NAME} ${SOURCES})

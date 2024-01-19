@@ -19,6 +19,7 @@
 #include "System/Net/SslException.hpp"
 #include "System/Net/SslStream.hpp"
 #include "System/Net/SslContext.hpp"
+#include "System/Text/JsonBuilder.hpp"
 #include "System/Text/Tokenizer.hpp"
 #include "System/Diagnostics/Stopwatch.hpp"
 #include "System/Guid.hpp"

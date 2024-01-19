@@ -223,9 +223,82 @@ namespace Gravy::System
         return result;
     }
 
+    bool String::TryParseInt8(const std::string &str, int8_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseUInt8(const std::string &str, uint8_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseInt16(const std::string &str, int16_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseUInt16(const std::string &str, uint16_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseInt32(const std::string &str, int32_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseUInt32(const std::string &str, uint32_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseInt64(const std::string &str, int64_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseUInt64(const std::string &str, uint64_t &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseFloat(const std::string &str, float &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+    bool String::TryParseDouble(const std::string &str, double &value)
+    {
+        std::stringstream stream(str);
+        stream >> value;
+        return stream.fail() == false;
+    }
+
+
     std::ostream& operator<<(std::ostream& os, const String& str)
     {
         os << str.GetValue();
         return os;
     }
+
+
 };
