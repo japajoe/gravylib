@@ -102,6 +102,26 @@ namespace Gravy::System
         {
             return timestamp != other.timestamp;
         }
+
+        bool operator>(const DateTime& other) const
+        {
+            return timestamp > other.timestamp;
+        }
+
+        bool operator>=(const DateTime& other) const
+        {
+            return timestamp >= other.timestamp;
+        }
+
+        bool operator<(const DateTime& other) const
+        {
+            return timestamp < other.timestamp;
+        }
+
+        bool operator<=(const DateTime& other) const
+        {
+            return timestamp <= other.timestamp;
+        }
     };
 };
 

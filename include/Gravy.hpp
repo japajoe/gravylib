@@ -26,6 +26,7 @@
 #include "System/URI.hpp"
 #include "System/Console.hpp"
 #include "System/Random.hpp"
+#include "System/Security/AntiForgery.hpp"
 #include "System/IO/FileStream.hpp"
 #include "System/IO/FileInfo.hpp"
 #include "System/IO/MemoryStream.hpp"
@@ -42,6 +43,7 @@ using namespace Gravy::System::Diagnostics;
 using namespace Gravy::System::IO;
 using namespace Gravy::System::Net;
 using namespace Gravy::System::Runtime;
+using namespace Gravy::System::Security;
 using namespace Gravy::System::Text;
 
 #endif
