@@ -1,6 +1,6 @@
 #include "StringBuilder.hpp"
 
-namespace Gravy::System
+namespace Gravy::System::Text
 {
     void StringBuilder::Append(const std::string &value)
     {

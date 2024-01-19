@@ -7,6 +7,8 @@
 #include "HostInfo.hpp"
 #include "SslStream.hpp"
 
+using namespace Gravy::System::Text;
+
 namespace Gravy::System::Net
 {
     static void HttpClientWrite(SslStream *stream, const void *data, size_t dataSize);

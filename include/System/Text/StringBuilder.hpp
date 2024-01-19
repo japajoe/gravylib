@@ -3,7 +3,7 @@
 
 #include <sstream>
 
-namespace Gravy::System
+namespace Gravy::System::Text
 {
     class StringBuilder
     {

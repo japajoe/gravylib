@@ -299,6 +299,4 @@ namespace Gravy::System
         os << str.GetValue();
         return os;
     }
-
-
 };

@@ -1,7 +1,7 @@
 #include "System/Net/TcpListener.hpp"
 #include "System/Net/SslContext.hpp"
 #include "System/Net/SslStream.hpp"
-#include "System/StringBuilder.hpp"
+#include "System/Text/StringBuilder.hpp"
 #include "System/String.hpp"
 #include "System/Signal.hpp"
 #include <iostream>
@@ -11,6 +11,7 @@
 
 using namespace Gravy::System;
 using namespace Gravy::System::Net;
+using namespace Gravy::System::Text;
 
 constexpr int MAX_HEADER_SIZE = 8192;
 constexpr uint16_t PORT = 8080;
