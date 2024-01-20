@@ -5,6 +5,7 @@
 #include "System/BitConverter.hpp"
 #include "System/DateTime.hpp"
 #include "System/Collections/ConcurrentQueue.hpp"
+#include "System/Threading/Thread.hpp"
 #include "System/Signal.hpp"
 #include "System/HashCode.hpp"
 #include "System/Math.hpp"
@@ -45,5 +46,6 @@ using namespace Gravy::System::Net;
 using namespace Gravy::System::Runtime;
 using namespace Gravy::System::Security;
 using namespace Gravy::System::Text;
+using namespace Gravy::System::Threading;
 
 #endif

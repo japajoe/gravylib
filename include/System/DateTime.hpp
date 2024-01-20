@@ -51,23 +51,23 @@ namespace Gravy::System
 
         /// @brief Adds milliseconds to this DateTime instance
         /// @param milliseconds The number of milliseconds to add
-        void AddMilliseconds(int64_t milliseconds);
+        DateTime AddMilliseconds(int64_t milliseconds);
 
         /// @brief Adds seconds to this DateTime instance
         /// @param seconds The number of seconds to add
-        void AddSeconds(int64_t seconds);
+        DateTime AddSeconds(int64_t seconds);
 
         /// @brief Adds minutes to this DateTime instance
         /// @param minutes The number of minutes to hour
-        void AddMinutes(int64_t minutes);
+        DateTime AddMinutes(int64_t minutes);
 
         /// @brief Adds hours to this DateTime instance
         /// @param hours The number of hours to add
-        void AddHours(int64_t hours);
+        DateTime AddHours(int64_t hours);
 
         /// @brief Adds days to this DateTime instance
         /// @param days The number of days to add
-        void AddDays(int64_t days);
+        DateTime AddDays(int64_t days);
 
         /// @brief Gets a DateTime object that is set to the current date and time on this computer, expressed as the local time
         /// @return The local time

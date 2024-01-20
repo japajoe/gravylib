@@ -59,29 +59,34 @@ namespace Gravy::System
         return local_tm.tm_mon;
     }
 
-    void DateTime::AddMilliseconds(int64_t milliseconds)
+    DateTime DateTime::AddMilliseconds(int64_t milliseconds)
     {
         timestamp += std::chrono::milliseconds(milliseconds);
+        return *this;
     }
 
-    void DateTime::AddSeconds(int64_t seconds)
+    DateTime DateTime::AddSeconds(int64_t seconds)
     {
         timestamp += std::chrono::seconds(seconds);
+        return *this;
     }
 
-    void DateTime::AddMinutes(int64_t minutes)
+    DateTime DateTime::AddMinutes(int64_t minutes)
     {
         timestamp += std::chrono::minutes(minutes);
+        return *this;
     }
 
-    void DateTime::AddHours(int64_t hours)
+    DateTime DateTime::AddHours(int64_t hours)
     {
         timestamp += std::chrono::hours(hours);
+        return *this;
     }
 
-    void DateTime::AddDays(int64_t days)
+    DateTime DateTime::AddDays(int64_t days)
     {
         timestamp += std::chrono::hours(days * 24);
+        return *this;
     }
 
     DateTime DateTime::Now()
