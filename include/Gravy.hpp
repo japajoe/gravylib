@@ -39,12 +39,16 @@
 #include "System/IO/Stream.hpp"
 #include "System/IO/Directory.hpp"
 #include "System/IO/File.hpp"
+#include "System/Numerics/Vector2.hpp"
+#include "System/Numerics/Vector3.hpp"
+#include "System/Numerics/Vector4.hpp"
 
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;
 using namespace Gravy::System::Diagnostics;
 using namespace Gravy::System::IO;
 using namespace Gravy::System::Net;
+using namespace Gravy::System::Numerics;
 using namespace Gravy::System::Runtime;
 using namespace Gravy::System::Security;
 using namespace Gravy::System::Security::Cryptography;
