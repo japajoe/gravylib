@@ -32,9 +32,9 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/Net/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Runtime/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Security/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/System/Security/Cryptography/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Text/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Threading/*.cpp"
-    #"${PROJECT_SOURCE_DIR}/examples/*.cpp"
 )
 
 # Specify include Directory
@@ -46,11 +46,11 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/include/System/Net"
     "${PROJECT_SOURCE_DIR}/include/System/Runtime"
     "${PROJECT_SOURCE_DIR}/include/System/Security"
+    "${PROJECT_SOURCE_DIR}/include/System/Security/Cryptography"
     "${PROJECT_SOURCE_DIR}/include/System/Text"
     "${PROJECT_SOURCE_DIR}/include/System/Threading"
 )
 
-#add_executable(${PROJECT_NAME} ${SOURCES})
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})

@@ -1,6 +1,7 @@
 #ifndef GRAVY_GRAVY_HPP
 #define GRAVY_GRAVY_HPP
 
+#include "System/Environment.hpp"
 #include "System/String.hpp"
 #include "System/BitConverter.hpp"
 #include "System/DateTime.hpp"
@@ -27,6 +28,7 @@
 #include "System/URI.hpp"
 #include "System/Console.hpp"
 #include "System/Random.hpp"
+#include "System/Security/Cryptography/Rfc2898DeriveBytes.hpp"
 #include "System/Security/AntiForgery.hpp"
 #include "System/IO/FileStream.hpp"
 #include "System/IO/FileInfo.hpp"
@@ -45,6 +47,7 @@ using namespace Gravy::System::IO;
 using namespace Gravy::System::Net;
 using namespace Gravy::System::Runtime;
 using namespace Gravy::System::Security;
+using namespace Gravy::System::Security::Cryptography;
 using namespace Gravy::System::Text;
 using namespace Gravy::System::Threading;
 

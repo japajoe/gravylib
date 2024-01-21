@@ -51,22 +51,27 @@ namespace Gravy::System
 
         /// @brief Adds milliseconds to this DateTime instance
         /// @param milliseconds The number of milliseconds to add
+        /// @return A new DateTime that adds the specified number of milliseconds to the value of this instance
         DateTime AddMilliseconds(int64_t milliseconds);
 
         /// @brief Adds seconds to this DateTime instance
         /// @param seconds The number of seconds to add
+        /// @return A new DateTime that adds the specified number of seconds to the value of this instance
         DateTime AddSeconds(int64_t seconds);
 
         /// @brief Adds minutes to this DateTime instance
         /// @param minutes The number of minutes to hour
+        /// @return A new DateTime that adds the specified number of minutes to the value of this instance
         DateTime AddMinutes(int64_t minutes);
 
         /// @brief Adds hours to this DateTime instance
         /// @param hours The number of hours to add
+        /// @return A new DateTime that adds the specified number of hours to the value of this instance
         DateTime AddHours(int64_t hours);
 
         /// @brief Adds days to this DateTime instance
         /// @param days The number of days to add
+        /// @return A new DateTime that adds the specified number of days to the value of this instance
         DateTime AddDays(int64_t days);
 
         /// @brief Gets a DateTime object that is set to the current date and time on this computer, expressed as the local time
@@ -91,13 +96,11 @@ namespace Gravy::System
 
         std::string FormattedTimestamp() const;
 
-        // Overload the equality operator
         bool operator==(const DateTime& other) const
         {
             return timestamp == other.timestamp;
         }
 
-        // Overload the inequality operator
         bool operator!=(const DateTime& other) const
         {
             return timestamp != other.timestamp;
