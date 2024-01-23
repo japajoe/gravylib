@@ -50,95 +50,21 @@ namespace Gravy::System::Net
 #ifdef _WIN32
     enum class AddressFamily : int
     {
-        AFUnspec = AF_UNSPEC,
-        AFUnix = AF_UNIX,
         AFInet = AF_INET,
-        AFImplink = AF_IMPLINK,
-        AFPup = AF_PUP,
-        AFChaos = AF_CHAOS,
-        AFNs = AF_NS,
-        AFIpx = AF_IPX,
-        AFIso = AF_ISO,
-        AFOsi = AF_OSI,
-        AFEcma = AF_ECMA,
-        AFDatakit = AF_DATAKIT,
-        AFCcitt = AF_CCITT,
-        AFSna = AF_SNA,
-        AFDecnet = AF_DECnet,
-        AFDli = AF_DLI,
-        AFLat = AF_LAT,
-        AFHylink = AF_HYLINK,
-        AFAppletalk = AF_APPLETALK,
-        AFNetbios = AF_NETBIOS,
-        AFVoiceview = AF_VOICEVIEW,
-        AFFirefox = AF_FIREFOX,
-        AFUnknown1 = AF_UNKNOWN1,
-        AFBan = AF_BAN,
-        AFAtm = AF_ATM,
-        AFInet6 = AF_INET6,
-        AFCluster = AF_CLUSTER,
-        AF12844 = AF_12844,
-        AFIrda = AF_IRDA,
-        AFNetdes = AF_NETDES,
-        AFTcnprocess = AF_TCNPROCESS,
-        AFTcnmessage = AF_TCNMESSAGE,
-        AFIclfxbm = AF_ICLFXBM,
-        AFBth = AF_BTH,
-        AFMax = AF_MAX
+        AFInet6 = AF_INET6
     };
 #else
     enum class AddressFamily : int
     {
-        AFLocal = AF_LOCAL,
-        AFUnix = AF_UNIX,
-        AFFile = AF_FILE,
         AFInet = AF_INET,
-        AFAx25 = AF_AX25,
-        AFIpx = AF_IPX,
-        AFAppletalk = AF_APPLETALK,
-        AFNetrom = AF_NETROM,
-        AFBridge = AF_BRIDGE,
-        AFAtmpvc = AF_ATMPVC,
-        AFX25 = AF_X25,
-        AFInet6 = AF_INET6,
-        AFRose = AF_ROSE,
-        AFDecnet = AF_DECnet,
-        AFNetbeui = AF_NETBEUI,
-        AFSecurity = AF_SECURITY,
-        AFKey = AF_KEY,
-        AFNetlink = AF_NETLINK,
-        AFRoute = AF_ROUTE,
-        AFPacket = AF_PACKET,
-        AFAsh = AF_ASH,
-        AFEconet = AF_ECONET,
-        AFAtmsvc = AF_ATMSVC,
-        AFRds = AF_RDS,
-        AFSna = AF_SNA,
-        AFIrda = AF_IRDA,
-        AFPppox = AF_PPPOX,
-        AFWanpipe = AF_WANPIPE,
-        AFLlc = AF_LLC,
-        AFIb = AF_IB,
-        AFMpls = AF_MPLS,
-        AFCan = AF_CAN,
-        AFTipc = AF_TIPC,
-        AFBluetooth = AF_BLUETOOTH,
-        AFIucv = AF_IUCV,
-        AFRxrpc = AF_RXRPC,
-        AFIsdn = AF_ISDN,
-        AFPhonet = AF_PHONET,
-        AFIeee802154 = AF_IEEE802154,
-        AFCaif = AF_CAIF,
-        AFAlg = AF_ALG,
-        AFNfc = AF_NFC,
-        AFVsock = AF_VSOCK,
-        AFKcm = AF_KCM,
-        AFQipcrtr = AF_QIPCRTR,
-        AFSmc = AF_SMC,
-        AFXdp = AF_XDP,
-        AFMax = AF_MAX
+        AFInet6 = AF_INET6
     };
 #endif
+
+    typedef union {
+        sockaddr_in_t ipv4;
+        sockaddr_in6_t ipv6;
+    } socket_address_t;
 
     class Socket
     {

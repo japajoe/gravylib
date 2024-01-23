@@ -1,5 +1,6 @@
 #include "Console.hpp"
 #include "DateTime.hpp"
+#include "Environment.hpp"
 #include <iostream>
 #include <map>
 #include <mutex>
@@ -7,7 +8,7 @@
 namespace Gravy::System
 {
     static std::map<ConsoleColor, std::string> consoleColorMap;
-    static std::mutex consoleColorMapMutex; // Mutex for protecting consoleColorMap
+    static std::mutex consoleColorMapMutex;
 
     static void InitializeConsoleColors()
     {
@@ -31,11 +32,11 @@ namespace Gravy::System
     void Console::WriteLine(const std::string &text, ConsoleColor color)
     {
         #ifdef _WIN32
-            std::cout << text << '\n';
+            std::cout << text << Environment::NewLine();
         #else
             InitializeConsoleColors();
             std::lock_guard<std::mutex> lock(consoleColorMapMutex);
-            std::cout << consoleColorMap[color] << text << consoleColorMap[ConsoleColor::Reset] << '\n';
+            std::cout << consoleColorMap[color] << text << consoleColorMap[ConsoleColor::Reset] << Environment::NewLine();
         #endif
     }
 
@@ -54,11 +55,11 @@ namespace Gravy::System
     {
         std::string timestamp = DateTime::Now().FormattedTimestamp();
         #ifdef _WIN32
-            std::cout << timestamp << ' ' << text << '\n';
+            std::cout << timestamp << ' ' << text << Environment::NewLine();
         #else
             InitializeConsoleColors();
             std::lock_guard<std::mutex> lock(consoleColorMapMutex);
-            std::cout << consoleColorMap[ConsoleColor::Green] << timestamp << consoleColorMap[ConsoleColor::Reset] << ' ' << text << '\n';
+            std::cout << consoleColorMap[ConsoleColor::Green] << timestamp << consoleColorMap[ConsoleColor::Reset] << ' ' << text << Environment::NewLine();
         #endif
     }
 
@@ -66,11 +67,11 @@ namespace Gravy::System
     {
         std::string timestamp = DateTime::Now().FormattedTimestamp();
         #ifdef _WIN32
-            std::cout << timestamp << ' ' << text << '\n';
+            std::cout << timestamp << ' ' << text << Environment::NewLine();
         #else
             InitializeConsoleColors();
             std::lock_guard<std::mutex> lock(consoleColorMapMutex);
-            std::cout << consoleColorMap[ConsoleColor::Green] << timestamp << consoleColorMap[ConsoleColor::Red] << ' ' << text << consoleColorMap[ConsoleColor::Reset] << '\n';
+            std::cout << consoleColorMap[ConsoleColor::Green] << timestamp << consoleColorMap[ConsoleColor::Red] << ' ' << text << consoleColorMap[ConsoleColor::Reset] << Environment::NewLine();
         #endif
     }
 };
