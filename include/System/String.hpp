@@ -34,6 +34,9 @@ namespace Gravy::System
         void Replace(const std::string &target, const std::string &replacement);
         String ToLower();
         String ToUpper();
+        String SubString(size_t startIndex);
+        String SubString(size_t startIndex, size_t length);
+        ssize_t IndexOf(const std::string &subStr);
 
         static std::vector<std::string> Split(const std::string &str, char separator);
         static std::string Trim(const std::string &str);
@@ -45,6 +48,9 @@ namespace Gravy::System
         static void Replace(std::string &str, const std::string &target, const std::string &replacement);
         static std::string ToLower(const std::string &str);
         static std::string ToUpper(const std::string &str);
+        static std::string SubString(const std::string &str, size_t startIndex);
+        static std::string SubString(const std::string &str, size_t startIndex, size_t length);
+        static ssize_t IndexOf(const std::string &str, const std::string &subStr);
 
         static bool TryParseInt8(const std::string &str, int8_t &value);
         static bool TryParseUInt8(const std::string &str, uint8_t &value);

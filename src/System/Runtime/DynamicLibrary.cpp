@@ -92,5 +92,4 @@ namespace Gravy::System::Runtime
     {
         return handle;
     }
-
 };

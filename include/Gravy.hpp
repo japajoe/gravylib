@@ -6,6 +6,7 @@
 #include "System/BitConverter.hpp"
 #include "System/DateTime.hpp"
 #include "System/Collections/ConcurrentQueue.hpp"
+#include "System/Collections/RingBuffer.hpp"
 #include "System/Threading/Thread.hpp"
 #include "System/Signal.hpp"
 #include "System/HashCode.hpp"

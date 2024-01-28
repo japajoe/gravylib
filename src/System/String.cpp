@@ -126,6 +126,21 @@ namespace Gravy::System
         return String::ToUpper(value);
     }
 
+    String String::SubString(size_t startIndex)
+    {
+        return String::SubString(value, startIndex);
+    }
+
+    String String::SubString(size_t startIndex, size_t length)
+    {
+        return String::SubString(value, startIndex, length);
+    }
+
+    ssize_t String::IndexOf(const std::string &subStr)
+    {
+        return String::IndexOf(value, subStr);
+    }
+
     std::vector<std::string> String::Split(const std::string &str, char separator)
     {
         std::vector<std::string> substrings;
@@ -223,6 +238,24 @@ namespace Gravy::System
         return result;
     }
 
+    std::string String::SubString(const std::string &str, size_t startIndex)
+    {
+        return str.substr(startIndex);
+    }
+
+    std::string String::SubString(const std::string &str, size_t startIndex, size_t length)
+    {
+        return str.substr(startIndex, length);
+    }
+
+    ssize_t String::IndexOf(const std::string &str, const std::string &subStr)
+    {
+        size_t pos = str.find(subStr);
+        if (pos != std::string::npos) 
+            return static_cast<ssize_t>(pos);
+        return -1; // Indicates substring not found
+    }
+
     bool String::TryParseInt8(const std::string &str, int8_t &value)
     {
         std::stringstream stream(str);
@@ -292,7 +325,6 @@ namespace Gravy::System
         stream >> value;
         return stream.fail() == false;
     }
-
 
     std::ostream& operator<<(std::ostream& os, const String& str)
     {
