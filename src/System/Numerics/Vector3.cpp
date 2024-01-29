@@ -25,18 +25,14 @@ namespace Gravy::System::Numerics
     void Vector3::Normalize()
     {
         float scale = 1.0f / Magnitude();
-        x *= scale;
-        y *= scale;
-        z *= scale;
+        value = _mm_mul_ps(value, _mm_set_ps1(scale));
     }
 
     Vector3 Vector3::Normalize(const Vector3 &v)
     {
         Vector3 normalized = v;
         float scale = 1.0f / normalized.Magnitude();
-        normalized.x *= scale;
-        normalized.y *= scale;
-        normalized.z *= scale;
+        normalized.value = _mm_mul_ps(normalized.value, _mm_set_ps1(scale));
         return normalized;
     }
 
@@ -63,105 +59,105 @@ namespace Gravy::System::Numerics
 
     Vector3 Vector3::operator +(const Vector3 &rhs)
     {
-        return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
+        Vector3 v;
+        v.value = _mm_add_ps(value, rhs.value);
+        return v;
     }
 
     Vector3 Vector3::operator +(float rhs)
     {
-        return Vector3(x + rhs, y + rhs, z + rhs);
+        Vector3 v;
+        v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
+        return v;
     }
 
     Vector3& Vector3::operator +=(const Vector3 &rhs)
     {
-        x += rhs.x;
-        y += rhs.y;
-        z += rhs.z;
+        value = _mm_add_ps(value, rhs.value);
         return *this;
     }
 
     Vector3& Vector3::operator +=(float rhs)
     {
-        x += rhs;
-        y += rhs;
-        z += rhs;
+        value = _mm_add_ps(value, _mm_set_ps1(rhs));
         return *this;
     }
 
     Vector3 Vector3::operator -(const Vector3 &rhs)
     {
-        return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
+        Vector3 v;
+        v.value = _mm_sub_ps(value, rhs.value);
+        return v;
     }
 
     Vector3 Vector3::operator -(float rhs)
     {
-        return Vector3(x - rhs, y - rhs, z - rhs);
+        Vector3 v;
+        v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
+        return v;
     }
 
     Vector3& Vector3::operator -=(const Vector3 &rhs)
     {
-        x -= rhs.x;
-        y -= rhs.y;
-        z -= rhs.z;
+        value = _mm_sub_ps(value, rhs.value);
         return *this;
     }
 
     Vector3& Vector3::operator -=(float rhs)
     {
-        x -= rhs;
-        y -= rhs;
-        z -= rhs;
+        value = _mm_sub_ps(value, _mm_set_ps1(rhs));
         return *this;
     }
 
     Vector3 Vector3::operator *(const Vector3 &rhs)
     {
-        return Vector3(x * rhs.x, y * rhs.y, z * rhs.z);
+        Vector3 v;
+        v.value = _mm_mul_ps(value, rhs.value);
+        return v;
     }
 
     Vector3 Vector3::operator *(float rhs)
     {
-        return Vector3(x * rhs, y * rhs, z * rhs);
+        Vector3 v;
+        v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
+        return v;
     }
 
     Vector3& Vector3::operator *=(const Vector3 &rhs)
     {
-        x *= rhs.x;
-        y *= rhs.y;
-        z *= rhs.z;
+        value = _mm_mul_ps(value, rhs.value);
         return *this;
     }
 
     Vector3& Vector3::operator *=(float rhs)
     {
-        x *= rhs;
-        y *= rhs;
-        z *= rhs;
+        value = _mm_mul_ps(value, _mm_set_ps1(rhs));
         return *this;
     }
 
     Vector3 Vector3::operator /(const Vector3 &rhs)
     {
-        return Vector3(x / rhs.x, y / rhs.y, z / rhs.z);
+        Vector3 v;
+        v.value = _mm_div_ps(value, rhs.value);
+        return v;
     }
 
     Vector3 Vector3::operator /(float rhs)
     {
-        return Vector3(x / rhs, y / rhs, z / rhs);
+        Vector3 v;
+        v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
+        return v;
     }
 
     Vector3& Vector3::operator /=(const Vector3 &rhs)
     {
-        x /= rhs.x;
-        y /= rhs.y;
-        z /= rhs.z;
+        value = _mm_div_ps(value, rhs.value);
         return *this;
     }
 
     Vector3& Vector3::operator /=(float rhs)
     {
-        x /= rhs;
-        y /= rhs;
-        z /= rhs;
+        value = _mm_div_ps(value, _mm_set_ps1(rhs));
         return *this;
     }
 
@@ -177,21 +173,29 @@ namespace Gravy::System::Numerics
 
     Vector3 operator +(float lhs, const Vector3 &rhs)
     {
-        return Vector3(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z);
+        Vector3 v;
+        v.value = _mm_add_ps(_mm_set_ps1(lhs), rhs.value);
+        return v;
     }
 
     Vector3 operator -(float lhs, const Vector3 &rhs)
     {
-        return Vector3(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z);
+        Vector3 v;
+        v.value = _mm_sub_ps(_mm_set_ps1(lhs), rhs.value);
+        return v;
     }
 
     Vector3 operator *(float lhs, const Vector3 &rhs)
     {
-        return Vector3(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
+        Vector3 v;
+        v.value = _mm_mul_ps(_mm_set_ps1(lhs), rhs.value);
+        return v;
     }
 
     Vector3 operator /(float lhs, const Vector3 &rhs)
     {
-        return Vector3(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
-    }    
+        Vector3 v;
+        v.value = _mm_div_ps(_mm_set_ps1(lhs), rhs.value);
+        return v;
+    }
 };

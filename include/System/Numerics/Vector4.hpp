@@ -1,15 +1,21 @@
 #ifndef GRAVY_VECTOR4_HPP
 #define GRAVY_VECTOR4_HPP
 
+#include "SIMD.hpp"
+
 namespace Gravy::System::Numerics
 {
     class Vector4
     {
     public:
-        float x;
-        float y;
-        float z;
-        float w;
+        union 
+        {
+            struct 
+            {
+                float x, y, z, w;
+            };
+            SIMD128 value; // SIMD type for four single-precision floats
+        };
         Vector4();
         Vector4(float x, float y, float z, float w);
         float Magnitude();

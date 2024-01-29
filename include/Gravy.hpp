@@ -2,6 +2,10 @@
 #define GRAVY_GRAVY_HPP
 
 #include "System/Environment.hpp"
+#include "System/Numerics/SIMD.hpp"
+#include "System/Numerics/Vector2.hpp"
+#include "System/Numerics/Vector4.hpp"
+#include "System/Numerics/Vector3.hpp"
 #include "System/String.hpp"
 #include "System/BitConverter.hpp"
 #include "System/DateTime.hpp"
@@ -40,9 +44,6 @@
 #include "System/IO/Stream.hpp"
 #include "System/IO/Directory.hpp"
 #include "System/IO/File.hpp"
-#include "System/Numerics/Vector2.hpp"
-#include "System/Numerics/Vector3.hpp"
-#include "System/Numerics/Vector4.hpp"
 
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;

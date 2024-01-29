@@ -23,7 +23,6 @@ function(define_file_basename_for_sources targetname)
     endforeach()
 endfunction()
 
-# Add sources
 file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/*.cpp"
@@ -38,7 +37,6 @@ file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/System/Threading/*.cpp"
 )
 
-# Specify include Directory
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
     "${PROJECT_SOURCE_DIR}/include/System"
