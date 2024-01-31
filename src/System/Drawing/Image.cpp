@@ -8032,7 +8032,7 @@ namespace Gravy::System::Drawing
         channels = 0;
     }
 
-    bool Image::LoadFromFile(const std::string &filepath, Image &targetImage)
+    bool Image::LoadFromFile(const std::string &filepath)
     {
         int width, height, channels;
         unsigned char* uncompressedData = stbi_load(filepath.c_str(), &width, &height, &channels, 0);
@@ -8040,7 +8040,7 @@ namespace Gravy::System::Drawing
         if(uncompressedData)
         {
             size_t dataSize = width * height * channels * sizeof(unsigned char);
-            targetImage = Image(uncompressedData, dataSize, width, height, channels);
+            *this = Image(uncompressedData, dataSize, width, height, channels);
             stbi_image_free(uncompressedData);
             return true;
         }
@@ -8048,7 +8048,7 @@ namespace Gravy::System::Drawing
         return false;
     }
 
-    bool Image::LoadFromMemory(const uint8_t *data, size_t size, Image &targetImage)
+    bool Image::LoadFromMemory(const uint8_t *data, size_t size)
     {
         int width, height, channels;
         unsigned char* uncompressedData = stbi_load_from_memory(data, size, &width, &height, &channels, 0);
@@ -8056,7 +8056,7 @@ namespace Gravy::System::Drawing
         if(uncompressedData)
         {
             size_t dataSize = width * height * channels * sizeof(unsigned char);
-            targetImage = Image(uncompressedData, dataSize, width, height, channels);
+            *this = Image(uncompressedData, dataSize, width, height, channels);
             stbi_image_free(uncompressedData);
             return true;
         }

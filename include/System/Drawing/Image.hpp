@@ -20,7 +20,7 @@ namespace Gravy::System::Drawing
         uint32_t GetHeight() const;
         uint32_t GetChannels() const;
         void Clear();
-        static bool LoadFromFile(const std::string &filepath, Image &targetImage);
-        static bool LoadFromMemory(const uint8_t *data, size_t size, Image &targetImage);
+        bool LoadFromFile(const std::string &filepath);
+        bool LoadFromMemory(const uint8_t *data, size_t size);
     };
 }
