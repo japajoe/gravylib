@@ -138,7 +138,7 @@ namespace Gravy::System::Numerics
         w *= scale;
     }
 
-    Quaternion Normalize(const Quaternion &value)
+    Quaternion Quaternion::Normalize(const Quaternion &value)
     {
         Quaternion q = value;
         float scale = 1.0f / q.Length();
