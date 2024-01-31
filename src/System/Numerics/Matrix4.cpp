@@ -129,11 +129,11 @@ namespace Gravy::System::Numerics
         float fov = (M_PI / 180.0) * fFovDegrees;
         const float tanHalfFOV = tanf(fov / 2.0f);
         Matrix4 result;
-        result.columns[0].x = 1.0f / (fAspectRatio * tanHalfFOV);
-        result.columns[1].y = 1.0f / (tanHalfFOV);
-        result.columns[2].z = -(fFar + fNear) / (fFar - fNear);
-        result.columns[2].w = -1.0f;
-        result.columns[3].z = -(2.0f * fFar * fNear) / (fFar - fNear);
+        result.m[0][0] = 1.0f / (fAspectRatio * tanHalfFOV);
+        result.m[1][1] = 1.0f / (tanHalfFOV);
+        result.m[2][2] = -(fFar + fNear) / (fFar - fNear);
+        result.m[2][3] = -1.0f;
+        result.m[3][2] = -(2.0f * fFar * fNear) / (fFar - fNear);
         return result;
 	}
 
