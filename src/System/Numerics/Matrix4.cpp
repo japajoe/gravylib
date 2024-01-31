@@ -10,7 +10,13 @@ namespace Gravy::System::Numerics
         std::memset(m, 0, 16 * sizeof(float));
     }
 
-    Matrix4 Matrix4::Inverse()
+	void Matrix4::Invert()
+	{
+		Matrix4 inverted = Inverse();
+		*this = inverted;
+	}
+
+    Matrix4 Matrix4::Inverse() const
     {
         float det = m[0][0] * (m[1][1] * m[2][2] * m[3][3] + m[1][2] * m[2][3] * m[3][1] + m[1][3] * m[2][1] * m[3][2] - m[1][1] * m[2][3] * m[3][2] - m[1][2] * m[2][1] * m[3][3] - m[1][3] * m[2][2] * m[3][1]) -
                     m[0][1] * (m[1][0] * m[2][2] * m[3][3] + m[1][2] * m[2][3] * m[3][0] + m[1][3] * m[2][0] * m[3][2] - m[1][0] * m[2][3] * m[3][2] - m[1][2] * m[2][0] * m[3][3] - m[1][3] * m[2][2] * m[3][0]) +
@@ -56,47 +62,47 @@ namespace Gravy::System::Numerics
 		return matrix;
 	}
 
-	Matrix4 Matrix4::CreateRotationX(float fAngleRad)
+	Matrix4 Matrix4::CreateRotationX(float angleRad)
 	{
 		Matrix4 matrix;
 		matrix.m[0][0] = 1.0f;
-		matrix.m[1][1] = cosf(fAngleRad);
-		matrix.m[1][2] = sinf(fAngleRad);
-		matrix.m[2][1] = -sinf(fAngleRad);
-		matrix.m[2][2] = cosf(fAngleRad);
+		matrix.m[1][1] = cosf(angleRad);
+		matrix.m[1][2] = sinf(angleRad);
+		matrix.m[2][1] = -sinf(angleRad);
+		matrix.m[2][2] = cosf(angleRad);
 		matrix.m[3][3] = 1.0f;
 		return matrix;
 	}
 
-	Matrix4 Matrix4::CreateRotationY(float fAngleRad)
+	Matrix4 Matrix4::CreateRotationY(float angleRad)
 	{
 		Matrix4 matrix;
-		matrix.m[0][0] = cosf(fAngleRad);
-		matrix.m[0][2] = sinf(fAngleRad);
-		matrix.m[2][0] = -sinf(fAngleRad);
+		matrix.m[0][0] = cosf(angleRad);
+		matrix.m[0][2] = sinf(angleRad);
+		matrix.m[2][0] = -sinf(angleRad);
 		matrix.m[1][1] = 1.0f;
-		matrix.m[2][2] = cosf(fAngleRad);
+		matrix.m[2][2] = cosf(angleRad);
 		matrix.m[3][3] = 1.0f;
 		return matrix;
 	}
 
-	Matrix4 Matrix4::CreateRotationZ(float fAngleRad)
+	Matrix4 Matrix4::CreateRotationZ(float angleRad)
 	{
 		Matrix4 matrix;
-		matrix.m[0][0] = cosf(fAngleRad);
-		matrix.m[0][1] = sinf(fAngleRad);
-		matrix.m[1][0] = -sinf(fAngleRad);
-		matrix.m[1][1] = cosf(fAngleRad);
+		matrix.m[0][0] = cosf(angleRad);
+		matrix.m[0][1] = sinf(angleRad);
+		matrix.m[1][0] = -sinf(angleRad);
+		matrix.m[1][1] = cosf(angleRad);
 		matrix.m[2][2] = 1.0f;
 		matrix.m[3][3] = 1.0f;
 		return matrix;
 	}
 
-    Matrix4 Matrix4::CreateRotation(float fAngleRadX, float fAngleRadY, float fAngleRadZ)
+    Matrix4 Matrix4::CreateRotation(float angleRadX, float angleRadY, float angleRadZ)
     {
-        Matrix4 rotX = CreateRotationX(fAngleRadX);
-        Matrix4 rotY = CreateRotationY(fAngleRadY);
-        Matrix4 rotZ = CreateRotationZ(fAngleRadZ);
+        Matrix4 rotX = CreateRotationX(angleRadX);
+        Matrix4 rotY = CreateRotationY(angleRadY);
+        Matrix4 rotZ = CreateRotationZ(angleRadZ);
         Matrix4 rotation = rotZ * rotY * rotX;
         return rotation;
     }
@@ -124,16 +130,16 @@ namespace Gravy::System::Numerics
         return matrix;
     }
 
-	Matrix4 Matrix4::Perspective(float fFovDegrees, float fAspectRatio, float fNear, float fFar)
+	Matrix4 Matrix4::Perspective(float fovDegrees, float aspectRatio, float near, float far)
 	{
-        float fov = (M_PI / 180.0) * fFovDegrees;
+        float fov = (M_PI / 180.0) * fovDegrees;
         const float tanHalfFOV = tanf(fov / 2.0f);
         Matrix4 result;
-        result.m[0][0] = 1.0f / (fAspectRatio * tanHalfFOV);
+        result.m[0][0] = 1.0f / (aspectRatio * tanHalfFOV);
         result.m[1][1] = 1.0f / (tanHalfFOV);
-        result.m[2][2] = -(fFar + fNear) / (fFar - fNear);
+        result.m[2][2] = -(far + near) / (far - near);
         result.m[2][3] = -1.0f;
-        result.m[3][2] = -(2.0f * fFar * fNear) / (fFar - fNear);
+        result.m[3][2] = -(2.0f * far * near) / (far - near);
         return result;
 	}
 

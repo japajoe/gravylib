@@ -23,15 +23,16 @@ namespace Gravy::System::Numerics
 		};
 
         Matrix4();
-        Matrix4 Inverse();
+        void Invert();
+        Matrix4 Inverse() const;
         static Matrix4 GetIdentity();
-        static Matrix4 CreateRotationX(float fAngleRad);
-        static Matrix4 CreateRotationY(float fAngleRad);
-        static Matrix4 CreateRotationZ(float fAngleRad);
-        static Matrix4 CreateRotation(float fAngleRadX, float fAngleRadY, float fAngleRadZ);
+        static Matrix4 CreateRotationX(float angleRad);
+        static Matrix4 CreateRotationY(float angleRad);
+        static Matrix4 CreateRotationZ(float angleRad);
+        static Matrix4 CreateRotation(float angleRadX, float angleRadY, float angleRadZ);
         static Matrix4 CreateTranslation(float x, float y, float z);
         static Matrix4 CreateScale(float x, float y, float z);
-        static Matrix4 Perspective(float fFovDegrees, float fAspectRatio, float fNear, float fFar);
+        static Matrix4 Perspective(float fovDegrees, float aspectRatio, float near, float far);
 
         Matrix4 operator*(const Matrix4 &rhs) const;
         Vector4 operator*(const Vector4 &rhs) const;
