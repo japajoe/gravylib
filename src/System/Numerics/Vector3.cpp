@@ -22,6 +22,17 @@ namespace Gravy::System::Numerics
         return std::sqrt(x * x + y * y + z * z);
     }
 
+    float Vector3::Length()
+    {
+        return std::sqrt(x * x + y * y + z * z);
+    }
+
+    float Vector3::LengthSquared()
+    {
+        float l = std::sqrt(x * x + y * y + z * z);
+        return l * l;
+    }
+
     void Vector3::Normalize()
     {
         float scale = 1.0f / Magnitude();
@@ -197,5 +208,10 @@ namespace Gravy::System::Numerics
         Vector3 v;
         v.value = _mm_div_ps(_mm_set_ps1(lhs), rhs.value);
         return v;
+    }
+
+    Vector3 Vector3::operator-() const
+    {
+        return Vector3(-x, -y, -z);
     }
 };

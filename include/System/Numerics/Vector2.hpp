@@ -19,6 +19,8 @@ namespace Gravy::System::Numerics
         Vector2();
         Vector2(float x, float y);
         float Magnitude();
+        float Length();
+        float LengthSquared();
         void Normalize();
         static Vector2 Normalize(const Vector2 &v);
         static float Dot(const Vector2 &lhs, const Vector2 &rhs);
@@ -41,6 +43,7 @@ namespace Gravy::System::Numerics
         Vector2& operator /=(float rhs);
         bool operator ==(const Vector2 &rhs) const;
         bool operator !=(const Vector2 &rhs) const;
+        Vector2 operator-() const;
     };
 
     Vector2 operator +(float lhs, const Vector2 &rhs);

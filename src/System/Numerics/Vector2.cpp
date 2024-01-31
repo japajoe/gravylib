@@ -20,6 +20,17 @@ namespace Gravy::System::Numerics
         return std::sqrt(x * x + y * y);
     }
 
+    float Vector2::Length()
+    {
+        return std::sqrt(x * x + y * y);
+    }
+
+    float Vector2::LengthSquared()
+    {
+        float l = std::sqrt(x * x + y * y);
+        return l * l;
+    }
+
     void Vector2::Normalize()
     {
         float scale = 1.0f / Magnitude();
@@ -187,5 +198,10 @@ namespace Gravy::System::Numerics
         Vector2 v;
         v.value = _mm_div_ps(_mm_set_ps1(lhs), rhs.value);
         return v;
-    }    
+    }
+
+    Vector2 Vector2::operator-() const
+    {
+        return Vector2(-x, -y);
+    }
 };
