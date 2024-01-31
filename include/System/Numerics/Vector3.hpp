@@ -5,6 +5,8 @@
 
 namespace Gravy::System::Numerics
 {
+    class Matrix4;
+
     class Vector3
     {
     public:
@@ -26,6 +28,7 @@ namespace Gravy::System::Numerics
         static float Dot(const Vector3 &lhs, const Vector3 &rhs);
         static Vector3 Cross(const Vector3 &lhs, const Vector3 &rhs);
         static Vector3 Lerp(const Vector3 &a, const Vector3 &b, float t);
+        static Vector3 TransformVector(const Vector3 v, const Matrix4 m);
         Vector3 operator +(const Vector3 &rhs) const;
         Vector3 operator +(float rhs) const;
         Vector3& operator +=(const Vector3 &rhs);

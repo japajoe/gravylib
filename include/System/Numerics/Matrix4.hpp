@@ -1,30 +1,35 @@
 #ifndef GRAVY_MATRIX4_HPP
 #define GRAVY_MATRIX4_HPP
 
-#include "Vector3.hpp"
 #include "Vector4.hpp"
 
 namespace Gravy::System::Numerics
 {
+    class Vector3;
+    class Quaternion;
+
     class Matrix4
     {
     public:
         union
-		{
-			Vector4 columns[4];
-			struct
-			{
-				float m11, m21, m31, m41;
-				float m12, m22, m32, m42;
-				float m13, m23, m33, m43;
-				float m14, m24, m34, m44;
-			};
-			float m[4][4];
-		};
+        {
+            Vector4 columns[4];
+            struct
+            {
+                float m11, m21, m31, m41;
+                float m12, m22, m32, m42;
+                float m13, m23, m33, m43;
+                float m14, m24, m34, m44;
+            };
+            float m[4][4];
+        };
 
         Matrix4();
         void Invert();
         Matrix4 Inverse() const;
+        Vector3 ExtractScale() const;
+        Vector3 ExtractTranslation() const;
+        Quaternion ExtractRotation() const;
         static Matrix4 GetIdentity();
         static Matrix4 CreateRotationX(float angleRad);
         static Matrix4 CreateRotationY(float angleRad);

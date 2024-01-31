@@ -1,4 +1,7 @@
 #include "Matrix4.hpp"
+#include "Vector3.hpp"
+#include "Vector4.hpp"
+#include "Quaternion.hpp"
 #include <cmath>
 #include <algorithm>
 #include <cstring>
@@ -50,6 +53,66 @@ namespace Gravy::System::Numerics
         inverse.m[3][3] = (m[0][0] * m[1][1] * m[2][2] + m[0][1] * m[1][2] * m[2][0] + m[0][2] * m[1][0] * m[2][1] - m[0][0] * m[1][2] * m[2][1] - m[0][1] * m[1][0] * m[2][2] - m[0][2] * m[1][1] * m[2][0]) * invDet;
 
         return inverse;
+    }
+
+	//Not tested yet
+	Vector3 Matrix4::ExtractScale() const
+	{
+		float x = std::sqrt(m[0][0] * m[0][0] + m[1][0] * m[1][0] + m[2][0] * m[2][0]);
+        float y = std::sqrt(m[0][1] * m[0][1] + m[1][1] * m[1][1] + m[2][1] * m[2][1]);
+        float z = std::sqrt(m[0][2] * m[0][2] + m[1][2] * m[1][2] + m[2][2] * m[2][2]);
+		return Vector3(x, y, z);
+	}
+
+	//Not tested yet
+	Vector3 Matrix4::ExtractTranslation() const
+	{
+        float x = m[0][3];
+        float y = m[1][3];
+        float z = m[2][3];
+		return Vector3(x, y, z);
+	}
+
+	//Not tested yet
+    Quaternion Matrix4::ExtractRotation() const
+	{
+        Quaternion quaternion;
+
+        float trace = m[0][0] + m[1][1] + m[2][2];
+        if (trace > 0.0f) 
+		{
+            float S = sqrt(trace + 1.0f) * 2.0f;
+            quaternion.w = 0.25f * S;
+            quaternion.x = (m[2][1] - m[1][2]) / S;
+            quaternion.y = (m[0][2] - m[2][0]) / S;
+            quaternion.z = (m[1][0] - m[0][1]) / S;
+        }
+		else if ((m[0][0] > m[1][1]) && (m[0][0] > m[2][2])) 
+		{
+            float S = sqrt(1.0f + m[0][0] - m[1][1] - m[2][2]) * 2.0f;
+            quaternion.w = (m[2][1] - m[1][2]) / S;
+            quaternion.x = 0.25f * S;
+            quaternion.y = (m[0][1] + m[1][0]) / S;
+            quaternion.z = (m[0][2] + m[2][0]) / S;
+        }
+		else if (m[1][1] > m[2][2]) 
+		{
+            float S = sqrt(1.0f + m[1][1] - m[0][0] - m[2][2]) * 2.0f;
+            quaternion.w = (m[0][2] - m[2][0]) / S;
+            quaternion.x = (m[0][1] + m[1][0]) / S;
+            quaternion.y = 0.25f * S;
+            quaternion.z = (m[1][2] + m[2][1]) / S;
+        }
+		else
+		{
+            float S = sqrt(1.0f + m[2][2] - m[0][0] - m[1][1]) * 2.0f;
+            quaternion.w = (m[1][0] - m[0][1]) / S;
+            quaternion.x = (m[0][2] + m[2][0]) / S;
+            quaternion.y = (m[1][2] + m[2][1]) / S;
+            quaternion.z = 0.25f * S;
+        }
+
+        return quaternion;
     }
 
 	Matrix4 Matrix4::GetIdentity()

@@ -1,4 +1,6 @@
 #include "Vector3.hpp"
+#include "Vector4.hpp"
+#include "Matrix4.hpp"
 #include <cmath>
 
 namespace Gravy::System::Numerics
@@ -66,6 +68,18 @@ namespace Gravy::System::Numerics
         c.y = t * (b.y - a.y) + a.y;
         c.z = t * (b.z - a.z) + a.z;
         return c;
+    }
+
+    //Not tested yet
+    Vector3 Vector3::TransformVector(const Vector3 v, const Matrix4 m)
+    {
+        Vector3 result;
+
+        result.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3];
+        result.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3];
+        result.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3];
+
+        return result;
     }
 
     Vector3 Vector3::operator +(const Vector3 &rhs) const
