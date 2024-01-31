@@ -1,6 +1,8 @@
 #ifndef GRAVY_NETWORKSTREAM_HPP
 #define GRAVY_NETWORKSTREAM_HPP
 
+#ifdef GRAVY_USE_OPENSSL
+
 #include "Socket.hpp"
 #include "SslStream.hpp"
 
@@ -68,5 +70,7 @@ namespace Gravy::System::Net
         }
     };
 };
+
+#endif //GRAVY_USE_OPENSSL
 
 #endif

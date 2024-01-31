@@ -4,7 +4,15 @@ project(gravy)
 
 set(CMAKE_BUILD_TYPE Release)
 
-find_package(OpenSSL REQUIRED)
+#To exclude OpenSSL set USE_OPENSSL to 0
+set(USE_OPENSSL 1)
+
+if(USE_OPENSSL EQUAL 1)
+    find_package(OpenSSL REQUIRED)
+    message(STATUS "Configuring for use with OpenSSL")
+else()
+    message(STATUS "Configuring for use without OpenSSL")
+endif()
 
 # Will add __FILENAME__ macros for all source files, which is the filename without full find_path
 function(define_file_basename_for_sources targetname)
@@ -53,8 +61,14 @@ include_directories(
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} -lpthread -lstdc++fs ${OPENSSL_LIBRARIES})
+if(USE_OPENSSL EQUAL 1)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE GRAVY_USE_OPENSSL)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
+    target_link_libraries(${PROJECT_NAME} -pthread -lstdc++fs ${OPENSSL_LIBRARIES})
+else()
+    target_include_directories(${PROJECT_NAME} PRIVATE)
+    target_link_libraries(${PROJECT_NAME} -pthread -lstdc++fs)
+endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

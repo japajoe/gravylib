@@ -1,6 +1,8 @@
 #ifndef GRAVY_SSLEXCEPTION_HPP
 #define GRAVY_SSLEXCEPTION_HPP
 
+#ifdef GRAVY_USE_OPENSSL
+
 #include <exception>
 #include <string>
 
@@ -19,5 +21,7 @@ namespace Gravy::System::Net
         std::string message_;
     };
 };
+
+#endif //GRAVY_USE_OPENSSL
 
 #endif

@@ -1,3 +1,5 @@
+#ifdef GRAVY_USE_OPENSSL
+
 #include "SslContext.hpp"
 
 namespace Gravy::System::Net
@@ -57,3 +59,5 @@ namespace Gravy::System::Net
         return context;
     }    
 };
+
+#endif //GRAVY_USE_OPENSSL

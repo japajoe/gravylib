@@ -1,3 +1,5 @@
+#ifdef GRAVY_USE_OPENSSL
+
 #include "HttpClient.hpp"
 #include "String.hpp"
 #include "URI.hpp"
@@ -158,3 +160,5 @@ namespace Gravy::System::Net
         }
     }
 };
+
+#endif //GRAVY_USE_OPENSSL

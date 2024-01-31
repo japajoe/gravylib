@@ -1,6 +1,8 @@
 #ifndef GRAVY_HTTPCLIENT_HPP
 #define GRAVY_HTTPCLIENT_HPP
 
+#ifdef GRAVY_USE_OPENSSL
+
 #include <string>
 #include <exception>
 #include <functional>
@@ -37,5 +39,7 @@ namespace Gravy::System::Net
         std::string message_;
     };
 };
+
+#endif //GRAVY_USE_OPENSSL
 
 #endif

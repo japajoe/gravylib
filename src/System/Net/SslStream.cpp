@@ -1,3 +1,5 @@
+#ifdef GRAVY_USE_OPENSSL
+
 #include "SslStream.hpp"
 #include <exception>
 
@@ -87,3 +89,5 @@ namespace Gravy::System::Net
         }
     }
 };
+
+#endif //GRAVY_USE_OPENSSL

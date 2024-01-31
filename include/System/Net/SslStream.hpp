@@ -1,6 +1,8 @@
 #ifndef GRAVY_SSLSTREAM_HPP
 #define GRAVY_SSLSTREAM_HPP
 
+#ifdef GRAVY_USE_OPENSSL
+
 #include "Socket.hpp"
 #include "SslContext.hpp"
 #include "SslException.hpp"
@@ -24,5 +26,7 @@ namespace Gravy::System::Net
         void Close();
     };
 };
+
+#endif //GRAVY_USE_OPENSSL
 
 #endif
