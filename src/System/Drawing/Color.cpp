@@ -2,20 +2,46 @@
 
 namespace Gravy::System::Drawing
 {
-    Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
-    {
-        this->r = r;
-        this->g = g;
-        this->b = b;
-        this->a = a;
-    }
-
     Color::Color()
     {
         this->r = 255;
         this->g = 255;
         this->b = 255;
         this->a = 255;
+    }
+
+    Color::Color(float r, float g, float b, float a)
+    {
+        this->r = r;
+        this->g = g;
+        this->b = b;
+        this->a = a;
+
+        if(this->r > 0.0 && this->r > 1.0f)
+            this->r /= 255.0f;
+        if(this->g > 0.0 && this->g > 1.0f)
+            this->g /= 255.0f;
+        if(this->b > 0.0 && this->b > 1.0f)
+            this->b /= 255.0f;
+        if(this->a > 0.0 && this->a > 1.0f)
+            this->a /= 255.0f;
+    }
+
+    Color::Color(uint32_t color)
+    {
+        this->r = (color >> 24) & 0xFF; // Extract red component
+        this->g = (color >> 16) & 0xFF; // Extract green component
+        this->b = (color >> 8) & 0xFF;  // Extract blue component
+        this->a = color & 0xFF;          // Extract alpha component
+
+        if(this->r > 0.0 && this->r > 1.0f)
+            this->r /= 255.0f;
+        if(this->g > 0.0 && this->g > 1.0f)
+            this->g /= 255.0f;
+        if(this->b > 0.0 && this->b > 1.0f)
+            this->b /= 255.0f;
+        if(this->a > 0.0 && this->a > 1.0f)
+            this->a /= 255.0f;
     }
 
     Color Color::LightGray()
