@@ -212,6 +212,15 @@ namespace Gravy::System::IO
         return ResourceBuffer(baseFile, mapFiles[sFile].nOffset, mapFiles[sFile].nSize);
     }
 
+    std::string ResourcePack::GetFileAsString(const std::string &sFile)
+    {
+        std::string s;
+        auto filebuffer = GetFileBuffer(sFile);
+        if(filebuffer.vMemory.size() > 0)
+            s = std::string(filebuffer.vMemory.data(), filebuffer.vMemory.size());
+        return s;
+    }
+
     bool ResourcePack::Loaded()
     {
         return baseFile.is_open();

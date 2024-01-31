@@ -46,6 +46,7 @@ namespace Gravy::System::IO
         bool Load(const std::string &sFile, const std::string &sKey);
         bool Save(const std::string &sFile, const std::string &sKey);
         ResourceBuffer GetFileBuffer(const std::string &sFile);
+        std::string GetFileAsString(const std::string &sFile);
         bool Loaded();
         std::map<std::string, ResourceFile> GetFiles() const;
     private:

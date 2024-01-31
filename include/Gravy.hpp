@@ -2,11 +2,11 @@
 #define GRAVY_GRAVY_HPP
 
 #include "System/Environment.hpp"
-#include "System/Numerics/SIMD.hpp"
-#include "System/Numerics/Matrix4.hpp"
-#include "System/Numerics/Quaternion.hpp"
-#include "System/Numerics/Vector2.hpp"
 #include "System/Numerics/Vector4.hpp"
+#include "System/Numerics/Matrix4.hpp"
+#include "System/Numerics/SIMD.hpp"
+#include "System/Numerics/Vector2.hpp"
+#include "System/Numerics/Quaternion.hpp"
 #include "System/Numerics/Vector3.hpp"
 #include "System/String.hpp"
 #include "System/BitConverter.hpp"
@@ -33,6 +33,7 @@
 #include "System/Guid.hpp"
 #include "System/Runtime/DynamicLibrary.hpp"
 #include "System/URI.hpp"
+#include "System/Drawing/Image.hpp"
 #include "System/Console.hpp"
 #include "System/Random.hpp"
 #include "System/Security/Cryptography/Rfc2898DeriveBytes.hpp"
@@ -50,6 +51,7 @@
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;
 using namespace Gravy::System::Diagnostics;
+using namespace Gravy::System::Drawing;
 using namespace Gravy::System::IO;
 using namespace Gravy::System::Net;
 using namespace Gravy::System::Numerics;
