@@ -57,14 +57,14 @@ namespace Gravy::System::Numerics
         return c;
     }
 
-    Vector3 Vector3::operator +(const Vector3 &rhs)
+    Vector3 Vector3::operator +(const Vector3 &rhs) const
     {
         Vector3 v;
         v.value = _mm_add_ps(value, rhs.value);
         return v;
     }
 
-    Vector3 Vector3::operator +(float rhs)
+    Vector3 Vector3::operator +(float rhs) const
     {
         Vector3 v;
         v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
@@ -83,14 +83,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector3 Vector3::operator -(const Vector3 &rhs)
+    Vector3 Vector3::operator -(const Vector3 &rhs) const
     {
         Vector3 v;
         v.value = _mm_sub_ps(value, rhs.value);
         return v;
     }
 
-    Vector3 Vector3::operator -(float rhs)
+    Vector3 Vector3::operator -(float rhs) const
     {
         Vector3 v;
         v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
@@ -109,14 +109,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector3 Vector3::operator *(const Vector3 &rhs)
+    Vector3 Vector3::operator *(const Vector3 &rhs) const
     {
         Vector3 v;
         v.value = _mm_mul_ps(value, rhs.value);
         return v;
     }
 
-    Vector3 Vector3::operator *(float rhs)
+    Vector3 Vector3::operator *(float rhs) const
     {
         Vector3 v;
         v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
@@ -135,14 +135,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector3 Vector3::operator /(const Vector3 &rhs)
+    Vector3 Vector3::operator /(const Vector3 &rhs) const
     {
         Vector3 v;
         v.value = _mm_div_ps(value, rhs.value);
         return v;
     }
 
-    Vector3 Vector3::operator /(float rhs)
+    Vector3 Vector3::operator /(float rhs) const
     {
         Vector3 v;
         v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
@@ -161,12 +161,12 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    bool Vector3::operator ==(const Vector3 &rhs)
+    bool Vector3::operator ==(const Vector3 &rhs) const
     {
         return x == rhs.x && y == rhs.y && z == rhs.z;
     }
 
-    bool Vector3::operator !=(const Vector3 &rhs)
+    bool Vector3::operator !=(const Vector3 &rhs) const
     {
         return x != rhs.x || y != rhs.y || z != rhs.z;
     }

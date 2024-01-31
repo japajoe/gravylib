@@ -47,14 +47,14 @@ namespace Gravy::System::Numerics
         return c;
     }
 
-    Vector2 Vector2::operator +(const Vector2 &rhs)
+    Vector2 Vector2::operator +(const Vector2 &rhs) const
     {
         Vector2 v;
         v.value = _mm_add_ps(value, rhs.value);
         return v;
     }
 
-    Vector2 Vector2::operator +(float rhs)
+    Vector2 Vector2::operator +(float rhs) const
     {
         Vector2 v;
         v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
@@ -73,14 +73,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector2 Vector2::operator -(const Vector2 &rhs)
+    Vector2 Vector2::operator -(const Vector2 &rhs) const
     {
         Vector2 v;
         v.value = _mm_sub_ps(value, rhs.value);
         return v;
     }
 
-    Vector2 Vector2::operator -(float rhs)
+    Vector2 Vector2::operator -(float rhs) const
     {
         Vector2 v;
         v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
@@ -99,14 +99,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector2 Vector2::operator *(const Vector2 &rhs)
+    Vector2 Vector2::operator *(const Vector2 &rhs) const
     {
         Vector2 v;
         v.value = _mm_mul_ps(value, rhs.value);
         return v;
     }
 
-    Vector2 Vector2::operator *(float rhs)
+    Vector2 Vector2::operator *(float rhs) const
     {
         Vector2 v;
         v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
@@ -125,14 +125,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector2 Vector2::operator /(const Vector2 &rhs)
+    Vector2 Vector2::operator /(const Vector2 &rhs) const
     {
         Vector2 v;
         v.value = _mm_div_ps(value, rhs.value);
         return v;
     }
 
-    Vector2 Vector2::operator /(float rhs)
+    Vector2 Vector2::operator /(float rhs) const
     {
         Vector2 v;
         v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
@@ -151,12 +151,12 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    bool Vector2::operator ==(const Vector2 &rhs)
+    bool Vector2::operator ==(const Vector2 &rhs) const
     {
         return x == rhs.x && y == rhs.y;
     }
 
-    bool Vector2::operator !=(const Vector2 &rhs)
+    bool Vector2::operator !=(const Vector2 &rhs) const
     {
         return x != rhs.x || y != rhs.y;
     }

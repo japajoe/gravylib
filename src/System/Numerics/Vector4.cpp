@@ -53,14 +53,14 @@ namespace Gravy::System::Numerics
         return c;
     }
 
-    Vector4 Vector4::operator +(const Vector4 &rhs)
+    Vector4 Vector4::operator +(const Vector4 &rhs) const
     {
         Vector4 v;
         v.value = _mm_add_ps(value, rhs.value);
         return v;
     }
 
-    Vector4 Vector4::operator +(float rhs)
+    Vector4 Vector4::operator +(float rhs) const
     {
         Vector4 v;
         v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
@@ -79,14 +79,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector4 Vector4::operator -(const Vector4 &rhs)
+    Vector4 Vector4::operator -(const Vector4 &rhs) const
     {
         Vector4 v;
         v.value = _mm_sub_ps(value, rhs.value);
         return v;
     }
 
-    Vector4 Vector4::operator -(float rhs)
+    Vector4 Vector4::operator -(float rhs) const
     {
         Vector4 v;
         v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
@@ -105,14 +105,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector4 Vector4::operator *(const Vector4 &rhs)
+    Vector4 Vector4::operator *(const Vector4 &rhs) const
     {
         Vector4 v;
         v.value = _mm_mul_ps(value, rhs.value);
         return v;
     }
 
-    Vector4 Vector4::operator *(float rhs)
+    Vector4 Vector4::operator *(float rhs) const
     {
         Vector4 v;
         v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
@@ -131,14 +131,14 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    Vector4 Vector4::operator /(const Vector4 &rhs)
+    Vector4 Vector4::operator /(const Vector4 &rhs) const
     {
         Vector4 v;
         v.value = _mm_div_ps(value, rhs.value);
         return v;
     }
 
-    Vector4 Vector4::operator /(float rhs)
+    Vector4 Vector4::operator /(float rhs) const
     {
         Vector4 v;
         v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
@@ -157,12 +157,12 @@ namespace Gravy::System::Numerics
         return *this;
     }
 
-    bool Vector4::operator ==(const Vector4 &rhs)
+    bool Vector4::operator ==(const Vector4 &rhs) const
     {
         return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
     }
 
-    bool Vector4::operator !=(const Vector4 &rhs)
+    bool Vector4::operator !=(const Vector4 &rhs) const
     {
         return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
     }

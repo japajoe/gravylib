@@ -3,6 +3,7 @@
 
 #include "System/Environment.hpp"
 #include "System/Numerics/SIMD.hpp"
+#include "System/Numerics/Matrix4.hpp"
 #include "System/Numerics/Vector2.hpp"
 #include "System/Numerics/Vector4.hpp"
 #include "System/Numerics/Vector3.hpp"
