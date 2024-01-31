@@ -7995,13 +7995,21 @@ namespace Gravy::System::Drawing
         this->channels = 0;
     }
 
-    Image::Image(const uint8_t *data, size_t size, uint32_t width, uint32_t height, uint32_t channels)
+    Image::Image(const std::string &filepath)
+    {
+        this->width = 0;
+        this->height = 0;
+        this->channels = 0;
+        LoadFromFile(filepath);
+    }
+
+    Image::Image(const uint8_t *uncompressedData, size_t size, uint32_t width, uint32_t height, uint32_t channels)
     {
         this->data.resize(size);
         this->width = width;
         this->height = height;
         this->channels = channels;
-        memcpy(this->data.data(), data, size);
+        memcpy(this->data.data(), uncompressedData, size);
     }
 
     std::vector<uint8_t> &Image::GetData()
@@ -8040,7 +8048,11 @@ namespace Gravy::System::Drawing
         if(uncompressedData)
         {
             size_t dataSize = width * height * channels * sizeof(unsigned char);
-            *this = Image(uncompressedData, dataSize, width, height, channels);
+            this->data.resize(dataSize);
+            this->width = width;
+            this->height = height;
+            this->channels = channels;
+            memcpy(this->data.data(), uncompressedData, dataSize);
             stbi_image_free(uncompressedData);
             return true;
         }
@@ -8056,7 +8068,11 @@ namespace Gravy::System::Drawing
         if(uncompressedData)
         {
             size_t dataSize = width * height * channels * sizeof(unsigned char);
-            *this = Image(uncompressedData, dataSize, width, height, channels);
+            this->data.resize(dataSize);
+            this->width = width;
+            this->height = height;
+            this->channels = channels;
+            memcpy(this->data.data(), uncompressedData, dataSize);
             stbi_image_free(uncompressedData);
             return true;
         }
