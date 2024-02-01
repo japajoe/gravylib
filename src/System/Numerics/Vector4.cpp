@@ -1,213 +1,39 @@
 #include "Vector4.hpp"
-#include <cmath>
 
 namespace Gravy::System::Numerics
 {
-    Vector4::Vector4()
+    float Vector4f::Dot(const Vector4 &v1, const Vector4 &v2)
     {
-        this->x = 0;
-        this->y = 0;
-        this->z = 0;
-        this->w = 0;
-    }
-    
-    Vector4::Vector4(float x, float y, float z, float w)
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-        this->z = w;
+        return glm::dot(v1, v2);
     }
 
-    float Vector4::Magnitude()
+    float Vector4f::Distance(const Vector4 &v1, const Vector4 &v2)
     {
-        return std::sqrt(x * x + y * y + z * z + w * w);
+        return glm::distance(v1, v2);
     }
 
-    float Vector4::Length()
+    float Vector4f::DistanceSquared(const Vector4 &v1, const Vector4 &v2)
     {
-        return std::sqrt(x * x + y * y + z * z + w * w);
+        return glm::distance2(v1, v2);
     }
 
-    float Vector4::LengthSquared()
+    float Vector4f::Length(const Vector4 &v)
     {
-        float l = std::sqrt(x * x + y * y + z * z + w * w);
-        return l * l;
+        return glm::length(v);
     }
 
-    void Vector4::Normalize()
+    float Vector4f::LengthSquared(const Vector4 &v)
     {
-        float scale = 1.0f / Magnitude();
-        value = _mm_mul_ps(value, _mm_set_ps1(scale));
+        return glm::length2(v);
     }
 
-    Vector4 Vector4::Normalize(const Vector4 &v)
+    Vector4 Vector4f::Lerp(const Vector4 &v1, const Vector4 &v2, float t)
     {
-        Vector4 normalized = v;
-        float scale = 1.0f / normalized.Magnitude();
-        normalized.value = _mm_mul_ps(normalized.value, _mm_set_ps1(scale));
-        return normalized;
+        return glm::lerp(v1, v2, t);
     }
 
-    float Vector4::Dot(const Vector4 &lhs, const Vector4 &rhs)
+    Vector4 Vector4f::Normalize(const Vector4 &v)
     {
-        return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.w * rhs.w;
-    }
-
-    Vector4 Vector4::Lerp(const Vector4 &a, const Vector4 &b, float t)
-    {
-        Vector4 c;
-        c.x = t * (b.x - a.x) + a.x;
-        c.y = t * (b.y - a.y) + a.y;
-        c.z = t * (b.z - a.z) + a.z;
-        c.w = t * (b.w - a.w) + a.w;
-        return c;
-    }
-
-    Vector4 Vector4::operator +(const Vector4 &rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_add_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector4 Vector4::operator +(float rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector4& Vector4::operator +=(const Vector4 &rhs)
-    {
-        value = _mm_add_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector4& Vector4::operator +=(float rhs)
-    {
-        value = _mm_add_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector4 Vector4::operator -(const Vector4 &rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_sub_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector4 Vector4::operator -(float rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector4& Vector4::operator -=(const Vector4 &rhs)
-    {
-        value = _mm_sub_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector4& Vector4::operator -=(float rhs)
-    {
-        value = _mm_sub_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector4 Vector4::operator *(const Vector4 &rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_mul_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector4 Vector4::operator *(float rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector4& Vector4::operator *=(const Vector4 &rhs)
-    {
-        value = _mm_mul_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector4& Vector4::operator *=(float rhs)
-    {
-        value = _mm_mul_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector4 Vector4::operator /(const Vector4 &rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_div_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector4 Vector4::operator /(float rhs) const
-    {
-        Vector4 v;
-        v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector4& Vector4::operator /=(const Vector4 &rhs)
-    {
-        value = _mm_div_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector4& Vector4::operator /=(float rhs)
-    {
-        value = _mm_div_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    bool Vector4::operator ==(const Vector4 &rhs) const
-    {
-        return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
-    }
-
-    bool Vector4::operator !=(const Vector4 &rhs) const
-    {
-        return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
-    }
-
-    Vector4 operator +(float lhs, const Vector4 &rhs)
-    {
-        Vector4 v;
-        v.value = _mm_add_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector4 operator -(float lhs, const Vector4 &rhs)
-    {
-        Vector4 v;
-        v.value = _mm_sub_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector4 operator *(float lhs, const Vector4 &rhs)
-    {
-        Vector4 v;
-        v.value = _mm_mul_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector4 operator /(float lhs, const Vector4 &rhs)
-    {
-        Vector4 v;
-        v.value = _mm_div_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector4 Vector4::operator-() const
-    {
-        return Vector4(-x, -y, -z, -w);
+        return glm::normalize(v);
     }
 };

@@ -49,6 +49,12 @@ file(GLOB SOURCES
 
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
+    "${PROJECT_SOURCE_DIR}/include/External/glm"
+    "${PROJECT_SOURCE_DIR}/include/External/glm/detail"
+    "${PROJECT_SOURCE_DIR}/include/External/glm/ext"
+    "${PROJECT_SOURCE_DIR}/include/External/glm/gtc"
+    "${PROJECT_SOURCE_DIR}/include/External/glm/gtx"
+    "${PROJECT_SOURCE_DIR}/include/External/glm/simd"
     "${PROJECT_SOURCE_DIR}/include/System"
     "${PROJECT_SOURCE_DIR}/include/System/Collections"
     "${PROJECT_SOURCE_DIR}/include/System/Diagnostics"

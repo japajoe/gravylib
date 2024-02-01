@@ -1,46 +1,32 @@
 #ifndef GRAVY_MATRIX4_HPP
 #define GRAVY_MATRIX4_HPP
 
-#include "Vector4.hpp"
+#include "../../External/glm/glm.hpp"
+#include "../../External/glm/gtc/quaternion.hpp"
+#include "../../External/glm/gtc/matrix_inverse.hpp"
+#include "../../External/glm/gtc/matrix_transform.hpp"
+#include "../../External/glm/gtx/quaternion.hpp"
+#include "../../External/glm/gtx/transform.hpp"
+#include "../../External/glm/gtx/compatibility.hpp"
+#include "../../External/glm/gtx/euler_angles.hpp"
 
 namespace Gravy::System::Numerics
 {
-    class Vector3;
-    class Quaternion;
+    typedef glm::mat4 Matrix4;
 
-    class Matrix4
+    class Matrix4f
     {
     public:
-        union
-        {
-            Vector4 columns[4];
-            struct
-            {
-                float m11, m21, m31, m41;
-                float m12, m22, m32, m42;
-                float m13, m23, m33, m43;
-                float m14, m24, m34, m44;
-            };
-            float m[4][4];
-        };
-
-        Matrix4();
-        void Invert();
-        Matrix4 Inverse() const;
-        Vector3 ExtractScale() const;
-        Vector3 ExtractTranslation() const;
-        Quaternion ExtractRotation() const;
         static Matrix4 GetIdentity();
-        static Matrix4 CreateRotationX(float angleRad);
-        static Matrix4 CreateRotationY(float angleRad);
-        static Matrix4 CreateRotationZ(float angleRad);
-        static Matrix4 CreateRotation(float angleRadX, float angleRadY, float angleRadZ);
-        static Matrix4 CreateTranslation(float x, float y, float z);
-        static Matrix4 CreateScale(float x, float y, float z);
         static Matrix4 Perspective(float fovDegrees, float aspectRatio, float near, float far);
-
-        Matrix4 operator*(const Matrix4 &rhs) const;
-        Vector4 operator*(const Vector4 &rhs) const;
+        static Matrix4 Orthographic(float left, float right, float bottom, float top, float near = 0, float far = 0);
+        static Matrix4 CreateTranslation(float x, float y, float z);
+        static Matrix4 CreateRotation(float x, float y, float z);
+        static Matrix4 CreateRotation(float x, float y, float z, float w);
+        static Matrix4 CreateRotationX(float angle);
+        static Matrix4 CreateRotationY(float angle);
+        static Matrix4 CreateRotationZ(float angle);
+        static Matrix4 CreateScale(float x, float y, float z);
     };
 };
 

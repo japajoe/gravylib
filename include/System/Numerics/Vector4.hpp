@@ -1,56 +1,30 @@
 #ifndef GRAVY_VECTOR4_HPP
 #define GRAVY_VECTOR4_HPP
 
-#include "SIMD.hpp"
+#include "../../External/glm/glm.hpp"
+#include "../../External/glm/gtc/quaternion.hpp"
+#include "../../External/glm/gtc/matrix_inverse.hpp"
+#include "../../External/glm/gtc/matrix_transform.hpp"
+#include "../../External/glm/gtx/quaternion.hpp"
+#include "../../External/glm/gtx/transform.hpp"
+#include "../../External/glm/gtx/compatibility.hpp"
+#include "../../External/glm/gtx/euler_angles.hpp"
 
 namespace Gravy::System::Numerics
 {
-    class Vector4
+    typedef glm::vec4 Vector4;
+
+    class Vector4f
     {
     public:
-        union 
-        {
-            struct 
-            {
-                float x, y, z, w;
-            };
-            SIMD128 value; // SIMD type for four single-precision floats
-        };
-        Vector4();
-        Vector4(float x, float y, float z, float w);
-        float Magnitude();
-        float Length();
-        float LengthSquared();
-        void Normalize();
+        static float Dot(const Vector4 &v1, const Vector4 &v2);
+        static float Distance(const Vector4 &v1, const Vector4 &v2);
+        static float DistanceSquared(const Vector4 &v1, const Vector4 &v2);
+        static float Length(const Vector4 &v);
+        static float LengthSquared(const Vector4 &v);
+        static Vector4 Lerp(const Vector4 &v1, const Vector4 &v2, float t);
         static Vector4 Normalize(const Vector4 &v);
-        static float Dot(const Vector4 &lhs, const Vector4 &rhs);
-        static Vector4 Cross(const Vector4 &lhs, const Vector4 &rhs);
-        static Vector4 Lerp(const Vector4 &a, const Vector4 &b, float t);
-        Vector4 operator +(const Vector4 &rhs) const;
-        Vector4 operator +(float rhs) const;
-        Vector4& operator +=(const Vector4 &rhs);
-        Vector4& operator +=(float rhs);        
-        Vector4 operator -(const Vector4 &rhs) const;
-        Vector4 operator -(float rhs) const;
-        Vector4& operator -=(const Vector4 &rhs);
-        Vector4& operator -=(float rhs);        
-        Vector4 operator *(const Vector4 &rhs) const;
-        Vector4 operator *(float rhs) const;
-        Vector4& operator *=(const Vector4 &rhs);
-        Vector4& operator *=(float rhs);
-        Vector4 operator /(const Vector4 &rhs) const;
-        Vector4 operator /(float rhs) const;
-        Vector4& operator /=(const Vector4 &rhs);
-        Vector4& operator /=(float rhs);
-        bool operator ==(const Vector4 &rhs) const;
-        bool operator !=(const Vector4 &rhs) const;
-        Vector4 operator-() const;
     };
-
-    Vector4 operator +(float lhs, const Vector4 &rhs);
-    Vector4 operator -(float lhs, const Vector4 &rhs);
-    Vector4 operator *(float lhs, const Vector4 &rhs);
-    Vector4 operator /(float lhs, const Vector4 &rhs);
 };
 
 #endif

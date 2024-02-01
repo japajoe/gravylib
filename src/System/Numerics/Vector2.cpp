@@ -1,207 +1,39 @@
 #include "Vector2.hpp"
-#include <cmath>
 
 namespace Gravy::System::Numerics
 {
-    Vector2::Vector2()
+    float Vector2f::Dot(const Vector2 &v1, const Vector2 &v2)
     {
-        this->x = 0;
-        this->y = 0;
-    }
-    
-    Vector2::Vector2(float x, float y)
-    {
-        this->x = x;
-        this->y = y;
+        return glm::dot(v1, v2);
     }
 
-    float Vector2::Magnitude()
+    float Vector2f::Distance(const Vector2 &v1, const Vector2 &v2)
     {
-        return std::sqrt(x * x + y * y);
+        return glm::distance(v1, v2);
     }
 
-    float Vector2::Length()
+    float Vector2f::DistanceSquared(const Vector2 &v1, const Vector2 &v2)
     {
-        return std::sqrt(x * x + y * y);
+        return glm::distance2(v1, v2);
     }
 
-    float Vector2::LengthSquared()
+    float Vector2f::Length(const Vector2 &v)
     {
-        float l = std::sqrt(x * x + y * y);
-        return l * l;
+        return glm::length(v);
     }
 
-    void Vector2::Normalize()
+    float Vector2f::LengthSquared(const Vector2 &v)
     {
-        float scale = 1.0f / Magnitude();
-        value = _mm_mul_ps(value, _mm_set_ps1(scale));
+        return glm::length2(v);
     }
 
-    Vector2 Vector2::Normalize(const Vector2 &v)
+    Vector2 Vector2f::Lerp(const Vector2 &v1, const Vector2 &v2, float t)
     {
-        Vector2 normalized = v;
-        float scale = 1.0f / normalized.Magnitude();
-        normalized.value = _mm_mul_ps(normalized.value, _mm_set_ps1(scale));
-        return normalized;
+        return glm::lerp(v1, v2, t);
     }
 
-    float Vector2::Dot(const Vector2 &lhs, const Vector2 &rhs)
+    Vector2 Vector2f::Normalize(const Vector2 &v)
     {
-        return lhs.x * rhs.x + lhs.y * rhs.y;
-    }
-
-    Vector2 Vector2::Lerp(const Vector2 &a, const Vector2 &b, float t)
-    {
-        Vector2 c;
-        c.x = t * (b.x - a.x) + a.x;
-        c.y = t * (b.y - a.y) + a.y;
-        return c;
-    }
-
-    Vector2 Vector2::operator +(const Vector2 &rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_add_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector2 Vector2::operator +(float rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_add_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector2& Vector2::operator +=(const Vector2 &rhs)
-    {
-        value = _mm_add_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector2& Vector2::operator +=(float rhs)
-    {
-        value = _mm_add_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector2 Vector2::operator -(const Vector2 &rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_sub_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector2 Vector2::operator -(float rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_sub_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector2& Vector2::operator -=(const Vector2 &rhs)
-    {
-        value = _mm_sub_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector2& Vector2::operator -=(float rhs)
-    {
-        value = _mm_sub_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector2 Vector2::operator *(const Vector2 &rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_mul_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector2 Vector2::operator *(float rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_mul_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector2& Vector2::operator *=(const Vector2 &rhs)
-    {
-        value = _mm_mul_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector2& Vector2::operator *=(float rhs)
-    {
-        value = _mm_mul_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    Vector2 Vector2::operator /(const Vector2 &rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_div_ps(value, rhs.value);
-        return v;
-    }
-
-    Vector2 Vector2::operator /(float rhs) const
-    {
-        Vector2 v;
-        v.value = _mm_div_ps(value, _mm_set_ps1(rhs));
-        return v;
-    }
-
-    Vector2& Vector2::operator /=(const Vector2 &rhs)
-    {
-        value = _mm_div_ps(value, rhs.value);
-        return *this;
-    }
-
-    Vector2& Vector2::operator /=(float rhs)
-    {
-        value = _mm_div_ps(value, _mm_set_ps1(rhs));
-        return *this;
-    }
-
-    bool Vector2::operator ==(const Vector2 &rhs) const
-    {
-        return x == rhs.x && y == rhs.y;
-    }
-
-    bool Vector2::operator !=(const Vector2 &rhs) const
-    {
-        return x != rhs.x || y != rhs.y;
-    }
-
-    Vector2 operator +(float lhs, const Vector2 &rhs)
-    {
-        Vector2 v;
-        v.value = _mm_add_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector2 operator -(float lhs, const Vector2 &rhs)
-    {
-        Vector2 v;
-        v.value = _mm_sub_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector2 operator *(float lhs, const Vector2 &rhs)
-    {
-        Vector2 v;
-        v.value = _mm_mul_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector2 operator /(float lhs, const Vector2 &rhs)
-    {
-        Vector2 v;
-        v.value = _mm_div_ps(_mm_set_ps1(lhs), rhs.value);
-        return v;
-    }
-
-    Vector2 Vector2::operator-() const
-    {
-        return Vector2(-x, -y);
+        return glm::normalize(v);
     }
 };
