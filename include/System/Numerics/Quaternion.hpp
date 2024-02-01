@@ -17,6 +17,7 @@ namespace Gravy::System::Numerics
 
     class Quaternionf
     {
+    public:
         static Quaternion Euler(float x, float y, float z);
         static Quaternion FromAxisAngle(const Vector3 &axis, float angle);
         static float Length(const Quaternion &v);
