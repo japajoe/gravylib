@@ -17,14 +17,18 @@ namespace Gravy::System::Numerics
     class Vector3f
     {
     public:
-        static Vector3 Cross(const Vector3 &v1, const Vector3 &v2);
-        static float Dot(const Vector3 &v1, const Vector3 &v2);
-        static float Distance(const Vector3 &v1, const Vector3 &v2);
-        static float DistanceSquared(const Vector3 &v1, const Vector3 &v2);
-        static float Length(const Vector3 &v);
-        static float LengthSquared(const Vector3 &v);
-        static Vector3 Lerp(const Vector3 &v1, const Vector3 &v2, float t);
-        static Vector3 Normalize(const Vector3 &v);
+        static glm::vec3 UnitX();
+        static glm::vec3 UnitY();
+        static glm::vec3 UnitZ();
+        static glm::vec3 Cross(const glm::vec3 &v1, const glm::vec3 &v2);
+        static float Dot(const glm::vec3 &v1, const glm::vec3 &v2);
+        static float Distance(const glm::vec3 &v1, const glm::vec3 &v2);
+        static float DistanceSquared(const glm::vec3 &v1, const glm::vec3 &v2);
+        static float Length(const glm::vec3 &v);
+        static float LengthSquared(const glm::vec3 &v);
+        static glm::vec3 Lerp(const glm::vec3 &v1, const glm::vec3 &v2, float t);
+        static glm::vec3 Normalize(const glm::vec3 &v);
+        static glm::vec3 TransformVector(const glm::vec3 &v, const glm::mat4 &m);
     };
 };
 

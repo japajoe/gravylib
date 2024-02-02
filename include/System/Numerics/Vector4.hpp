@@ -17,13 +17,13 @@ namespace Gravy::System::Numerics
     class Vector4f
     {
     public:
-        static float Dot(const Vector4 &v1, const Vector4 &v2);
-        static float Distance(const Vector4 &v1, const Vector4 &v2);
-        static float DistanceSquared(const Vector4 &v1, const Vector4 &v2);
-        static float Length(const Vector4 &v);
-        static float LengthSquared(const Vector4 &v);
-        static Vector4 Lerp(const Vector4 &v1, const Vector4 &v2, float t);
-        static Vector4 Normalize(const Vector4 &v);
+        static float Dot(const glm::vec4 &v1, const glm::vec4 &v2);
+        static float Distance(const glm::vec4 &v1, const glm::vec4 &v2);
+        static float DistanceSquared(const glm::vec4 &v1, const glm::vec4 &v2);
+        static float Length(const glm::vec4 &v);
+        static float LengthSquared(const glm::vec4 &v);
+        static glm::vec4 Lerp(const glm::vec4 &v1, const glm::vec4 &v2, float t);
+        static glm::vec4 Normalize(const glm::vec4 &v);
     };
 };
 

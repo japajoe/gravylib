@@ -2,37 +2,42 @@
 
 namespace Gravy::System::Numerics
 {
-    Quaternion Quaternionf::Euler(float x, float y, float z)
+    glm::quat Quaternionf::Euler(float x, float y, float z)
     {
         return glm::quat(glm::vec3(x, y, z));
     }
 
-    Quaternion Quaternionf::FromAxisAngle(const Vector3 &axis, float angle)
+    glm::quat Quaternionf::FromAxisAngle(const glm::vec3 &axis, float angle)
     {
         return glm::angleAxis(angle, axis);
     }
 
-    float Quaternionf::Length(const Quaternion &v)
+    glm::quat Quaternionf::Invert(const glm::quat &v)
+    {
+        return glm::inverse(v);
+    }
+
+    float Quaternionf::Length(const glm::quat &v)
     {
         return glm::length(v);
     }
 
-    float Quaternionf::LengthSquared(const Quaternion &v)
+    float Quaternionf::LengthSquared(const glm::quat &v)
     {
         return glm::length2(v);
     }
 
-    Quaternion Quaternionf::Normalize(const Quaternion &v)
+    glm::quat Quaternionf::Normalize(const glm::quat &v)
     {
         return glm::normalize(v);
     }
 
-    Quaternion Quaternionf::Slerp(const Quaternion &v1, const Quaternion &v2, float t)
+    glm::quat Quaternionf::Slerp(const glm::quat &v1, const glm::quat &v2, float t)
     {
         return glm::slerp(v1, v2, t);
     }
 
-    Vector3 Quaternionf::ToEulerAngles(const Quaternion &v)
+    glm::vec3 Quaternionf::ToEulerAngles(const glm::quat &v)
     {
         return glm::eulerAngles(v);
     }

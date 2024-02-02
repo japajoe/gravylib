@@ -9,7 +9,6 @@
 #include "../../External/glm/gtx/transform.hpp"
 #include "../../External/glm/gtx/compatibility.hpp"
 #include "../../External/glm/gtx/euler_angles.hpp"
-#include "Vector3.hpp"
 
 namespace Gravy::System::Numerics
 {
@@ -18,13 +17,14 @@ namespace Gravy::System::Numerics
     class Quaternionf
     {
     public:
-        static Quaternion Euler(float x, float y, float z);
-        static Quaternion FromAxisAngle(const Vector3 &axis, float angle);
-        static float Length(const Quaternion &v);
-        static float LengthSquared(const Quaternion &v);
-        static Quaternion Normalize(const Quaternion &v);
-        static Quaternion Slerp(const Quaternion &v1, const Quaternion &v2, float t);
-        static Vector3 ToEulerAngles(const Quaternion &v);
+        static glm::quat Euler(float x, float y, float z);
+        static glm::quat FromAxisAngle(const glm::vec3 &axis, float angle);
+        static glm::quat Invert(const glm::quat &v);
+        static float Length(const glm::quat &v);
+        static float LengthSquared(const glm::quat &v);
+        static glm::quat Normalize(const glm::quat &v);
+        static glm::quat Slerp(const glm::quat &v1, const glm::quat &v2, float t);
+        static glm::vec3 ToEulerAngles(const glm::quat &v);
     };
 };
 
