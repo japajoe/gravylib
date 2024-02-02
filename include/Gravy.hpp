@@ -2,7 +2,9 @@
 #define GRAVY_GRAVY_HPP
 
 #include "System/Environment.hpp"
+#include "System/EventHandler.hpp"
 #include "System/Numerics/Vector4.hpp"
+#include "System/Numerics/Matrix3.hpp"
 #include "System/Numerics/Matrix4.hpp"
 #include "System/Numerics/SIMD.hpp"
 #include "System/Numerics/Vector2.hpp"
