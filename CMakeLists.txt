@@ -33,6 +33,9 @@ endfunction()
 
 file(GLOB SOURCES
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/Audio/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/External/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/External/miniaudioex/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Collections/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/System/Diagnostics/*.cpp"
@@ -49,12 +52,14 @@ file(GLOB SOURCES
 
 include_directories(
     "${PROJECT_SOURCE_DIR}/include"
+    "${PROJECT_SOURCE_DIR}/include/Audio"
     "${PROJECT_SOURCE_DIR}/include/External/glm"
     "${PROJECT_SOURCE_DIR}/include/External/glm/detail"
     "${PROJECT_SOURCE_DIR}/include/External/glm/ext"
     "${PROJECT_SOURCE_DIR}/include/External/glm/gtc"
     "${PROJECT_SOURCE_DIR}/include/External/glm/gtx"
     "${PROJECT_SOURCE_DIR}/include/External/glm/simd"
+    "${PROJECT_SOURCE_DIR}/include/External/miniaudioex"
     "${PROJECT_SOURCE_DIR}/include/System"
     "${PROJECT_SOURCE_DIR}/include/System/Collections"
     "${PROJECT_SOURCE_DIR}/include/System/Diagnostics"
@@ -74,10 +79,10 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 if(USE_OPENSSL EQUAL 1)
     target_compile_definitions(${PROJECT_NAME} PRIVATE GRAVY_USE_OPENSSL)
     target_include_directories(${PROJECT_NAME} PRIVATE ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(${PROJECT_NAME} -pthread -lstdc++fs ${OPENSSL_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} -ldl -lm -pthread -lstdc++fs ${OPENSSL_LIBRARIES})
 else()
     target_include_directories(${PROJECT_NAME} PRIVATE)
-    target_link_libraries(${PROJECT_NAME} -pthread -lstdc++fs)
+    target_link_libraries(${PROJECT_NAME} -ldl -lm -pthread -lstdc++fs)
 endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)

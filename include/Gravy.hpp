@@ -52,6 +52,12 @@
 #include "System/IO/Directory.hpp"
 #include "System/IO/File.hpp"
 
+#include "Audio/AudioClip.hpp"
+#include "Audio/AudioListener.hpp"
+#include "Audio/AudioManager.hpp"
+#include "Audio/AudioSource.hpp"
+
+using namespace Gravy::Audio;
 using namespace Gravy::System;
 using namespace Gravy::System::Collections;
 using namespace Gravy::System::Diagnostics;

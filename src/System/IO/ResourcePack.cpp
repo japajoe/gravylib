@@ -27,6 +27,24 @@ namespace Gravy::System::IO
         setg(vMemory.data(), vMemory.data(), vMemory.data() + size);
     }
 
+    std::string ResourceBuffer::GetString()
+    {
+        std::string s;
+        if(vMemory.size() > 0)
+            s = std::string(vMemory.data(), vMemory.size());
+        return s;
+    }
+
+    char *ResourceBuffer::GetPointer(size_t &size)
+    {
+        if(vMemory.size() > 0)
+        {
+            size = vMemory.size();
+            return vMemory.data();
+        }
+        return nullptr;
+    }    
+
     ResourcePack::ResourcePack() {}
     ResourcePack::~ResourcePack() { baseFile.close(); }
 
@@ -216,9 +234,7 @@ namespace Gravy::System::IO
     {
         std::string s;
         auto filebuffer = GetFileBuffer(sFile);
-        if(filebuffer.vMemory.size() > 0)
-            s = std::string(filebuffer.vMemory.data(), filebuffer.vMemory.size());
-        return s;
+        return filebuffer.GetString();
     }
 
     bool ResourcePack::Loaded()

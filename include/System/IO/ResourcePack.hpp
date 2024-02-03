@@ -27,6 +27,8 @@ namespace Gravy::System::IO
     {
         ResourceBuffer(std::ifstream &ifs, uint32_t offset, uint32_t size);
         std::vector<char> vMemory;
+        std::string GetString();
+        char *GetPointer(size_t &size);
     };
 
     struct ResourceFile
