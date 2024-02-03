@@ -8,6 +8,7 @@ A C++ utility library laid out in a similar manner as the C# standard library.
 - Resource packing (virtual file system)
 - Sockets for listening or connecting to servers
 - Dynamic loading of libraries
+- Audio playback powered by [miniaudioex](https://github.com/japajoe/miniaudioex)
 - Etc...
 
 # Disclaimer

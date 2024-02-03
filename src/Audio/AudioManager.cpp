@@ -8,7 +8,7 @@ namespace Gravy::Audio
     ma_format AudioManager::format = ma_format_f32;
     ma_device_data_proc AudioManager::dataProc = nullptr;
     std::vector<AudioSource *> AudioManager::sources;
-    RingBuffer<AudioSource *> AudioManager::playbackEndedQueue;
+    ConcurrentQueue<AudioSource *> AudioManager::playbackEndedQueue;
 
     void AudioManager::Initialize()
     {

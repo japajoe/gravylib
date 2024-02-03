@@ -3,6 +3,7 @@
 
 #include "../External/miniaudioex/miniaudioex.h"
 #include "../System/Collections/RingBuffer.hpp"
+#include "../System/Collections/ConcurrentQueue.hpp"
 #include "AudioSource.hpp"
 #include <vector>
 #include <cstdint>
@@ -20,7 +21,7 @@ namespace Gravy::Audio
         static ma_format format;
         static ma_device_data_proc dataProc;
         static std::vector<AudioSource*> sources;
-        static RingBuffer<AudioSource*> playbackEndedQueue;
+        static ConcurrentQueue<AudioSource*> playbackEndedQueue;
         static void OnDataProcess(ma_device *pDevice, void *pOutput, const void *pInput, ma_uint32 frameCount);
     public:
         static void Initialize();
