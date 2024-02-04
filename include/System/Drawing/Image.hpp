@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstdint>
 #include <cstdlib>
+#include "Color.hpp"
 
 namespace Gravy::System::Drawing
 {
@@ -23,5 +24,6 @@ namespace Gravy::System::Drawing
         void Clear();
         bool LoadFromFile(const std::string &filepath);
         bool LoadFromMemory(const uint8_t *data, size_t size);
+        bool Load(uint32_t width, uint32_t height, uint32_t channels, const Color &color);
     };
 }
