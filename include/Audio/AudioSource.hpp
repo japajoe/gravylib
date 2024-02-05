@@ -4,10 +4,13 @@
 #include <functional>
 #include <string>
 #include "../External/miniaudioex/miniaudioex.h"
+#include "../System/Numerics/Vector3.hpp"
 #include "AudioClip.hpp"
 
 namespace Gravy::Audio
 {
+    using Vector3 = Gravy::System::Numerics::Vector3;
+    
     enum class AttenuationModel
     {
         None,          /* No distance attenuation and no spatialization. */
@@ -15,7 +18,6 @@ namespace Gravy::Audio
         Linear,        /* Linear attenuation. Equivalent to OpenAL's AL_LINEAR_DISTANCE_CLAMPED. */
         Exponential    /* Exponential attenuation. Equivalent to OpenAL's AL_EXPONENT_DISTANCE_CLAMPED. */        
     };
-
 
     class AudioSource 
     {
@@ -31,6 +33,9 @@ namespace Gravy::Audio
         float maxDistance;
         float dopplerFactor;
         AttenuationModel attenuationModel;
+        Vector3 position;
+        Vector3 forward;
+        Vector3 velocity;
         void ApplyAllProperties();
         void ApplyIsLooping();
         void ApplyVolume();
@@ -72,11 +77,18 @@ namespace Gravy::Audio
         float GetMaxDistance() const;
         void SetDopplerFactor(float dopplerFactor);
         float GetDopplerFactor() const;
-        ma_uint64 GetPosition() const;
+        ma_uint64 GetPositionInSamples() const;
         double GetPositionInSeconds() const;
         ma_uint64 GetLength() const;
         double GetLengthInSeconds() const;
         std::string GetFormattedTimeStamp(double seconds);
+        void SetPosition(const Vector3 &position);
+        Vector3 GetPosition();
+        void SetForward(const Vector3 &forward);
+        Vector3 GetForward();
+        void SetVelocity(const Vector3 &velocity);
+        Vector3 GetVelocity();
+        ma_ex_audio_source *GetHandle() const;
     };
 };
 

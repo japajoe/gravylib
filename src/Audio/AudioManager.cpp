@@ -8,6 +8,7 @@ namespace Gravy::Audio
     ma_format AudioManager::format = ma_format_f32;
     ma_device_data_proc AudioManager::dataProc = nullptr;
     std::vector<AudioSource *> AudioManager::sources;
+    std::vector<AudioListener*> AudioManager::listeners;
     ConcurrentQueue<AudioSource *> AudioManager::playbackEndedQueue;
 
     void AudioManager::Initialize()
@@ -53,12 +54,26 @@ namespace Gravy::Audio
         sources.push_back(source);
     }
 
+    void AudioManager::Add(AudioListener *listener)
+    {
+        if (context == nullptr)
+            return;
+
+        for (size_t i = 0; i < listeners.size(); i++)
+        {
+            if (listeners[i] == listener)
+                return;
+        }
+
+        listeners.push_back(listener);
+    }
+
     void AudioManager::Remove(AudioSource *source)
     {
         if (context == nullptr)
             return;
 
-        int64_t index = -1;
+        ssize_t index = -1;
 
         for (size_t i = 0; i < sources.size(); i++)
         {
@@ -76,6 +91,29 @@ namespace Gravy::Audio
         }
     }
 
+    void AudioManager::Remove(AudioListener *listener)
+    {
+        if (context == nullptr)
+            return;
+
+        ssize_t index = -1;
+
+        for (size_t i = 0; i < listeners.size(); i++)
+        {
+            if (listeners[i] == listener)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if (index >= 0)
+        {
+            listeners[index]->Dispose();
+            listeners.erase(listeners.begin() + index);
+        }
+    }
+
     void AudioManager::Update()
     {
         if (playbackEndedQueue.GetCount() > 0)
@@ -87,31 +125,53 @@ namespace Gravy::Audio
             }
         }
 
-        // AudioListener listener = AudioListener.Instance;
+        if(listeners.size() == 0)
+            return;
 
-        // if(listener == null)
-        //     return;
+        for(size_t i = 0; i < listeners.size(); i++)
+        {
+            auto listener = listeners[i];
+            
+            if(!listener)
+                continue;
+            
+            auto handle = listener->GetHandle();
+            
+            if(!handle)
+                continue;
 
-        // Vector3 position = listener.transform.position;
-        // Vector3 forward = listener.transform.forward;
-        // Vector3 velocity = listener.transform.position;
+            Vector3 position = listener->GetPosition();
+            Vector3 forward = listener->GetForward();
+            Vector3 velocity = listener->GetVelocity();
 
-        // ma_ex_audio_listener_set_position(listener.Handle, position.X, position.Y, position.Z);
-        // ma_ex_audio_listener_set_direction(listener.Handle, forward.X, forward.Y, forward.Z);
-        // ma_ex_audio_listener_set_velocity(listener.Handle, velocity.X, velocity.Y, velocity.Z);
+            ma_ex_audio_listener_set_position(handle, position.x, position.y, position.z);
+            ma_ex_audio_listener_set_direction(handle, forward.x, forward.y, forward.z);
+            ma_ex_audio_listener_set_velocity(handle, velocity.x, velocity.y, velocity.z);
 
-        // for(size_t i = 0; i < sources.size(); i++)
-        // {
-        //     if(sources[i]->GetSpatial() && sources[i]->GetIsPlaying())
-        //     {
-        //         position = sources[i].audioSource.transform.position;
-        //         forward = sources[i].audioSource.transform.forward;
-        //         velocity = sources[i].audioSource.transform.velocity;
-        //         MiniAudio.ma_ex_audio_source_set_position(sources[i].audioSource.Handle, position.X, position.Y, position.Z);
-        //         MiniAudio.ma_ex_audio_source_set_direction(sources[i].audioSource.Handle, forward.X, forward.Y, forward.Z);
-        //         MiniAudio.ma_ex_audio_source_set_velocity(sources[i].audioSource.Handle, velocity.X, velocity.Y, velocity.Z);
-        //     }
-        // }
+            for(size_t j = 0; j < sources.size(); j++)
+            {
+                if(sources[j]->GetSpatial() && sources[j]->IsPlaying())
+                {
+                    auto source = sources[j];
+
+                    if(!source)
+                        continue;
+                    
+                    auto handle = source->GetHandle();
+
+                    if(!handle)
+                        continue;
+
+                    position = source->GetPosition();
+                    forward = source->GetForward();
+                    velocity = source->GetVelocity();
+
+                    ma_ex_audio_source_set_position(handle, position.x, position.y, position.z);
+                    ma_ex_audio_source_set_direction(handle, forward.x, forward.y, forward.z);
+                    ma_ex_audio_source_set_velocity(handle, velocity.x, velocity.y, velocity.z);
+                }
+            }
+        }
     }
 
     void AudioManager::SetPlaybackEndedForSource(AudioSource *source)

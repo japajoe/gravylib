@@ -16,7 +16,10 @@ namespace Gravy::Audio
         this->minDistance = 1.0f;
         this->maxDistance = 100.0f;
         this->dopplerFactor = 1.0f;
-        attenuationModel = AttenuationModel::Linear;
+        this->attenuationModel = AttenuationModel::Linear;
+        this->position = Vector3(0.0f, 0.0f, 0.0f);
+        this->forward = Vector3(0.0f, 0.0f, -1.0f);
+        this->velocity = Vector3(0.0f, 0.0f, 0.0f);
 
         ma_ex_audio_source_callbacks callbacks = {0};
         callbacks.dspProc = &OnDSPCallback;
@@ -160,7 +163,7 @@ namespace Gravy::Audio
         return dopplerFactor;
     }
 
-    ma_uint64 AudioSource::GetPosition() const
+    ma_uint64 AudioSource::GetPositionInSamples() const
     {
         ma_uint64 position = 0;
         ma_ex_audio_source_get_pcm_position(handle, &position);
@@ -325,5 +328,40 @@ namespace Gravy::Audio
     {
         ma_attenuation_model model = static_cast<ma_attenuation_model>(attenuationModel);
         ma_ex_audio_source_set_attenuation_model(handle, model);
+    }
+
+    void AudioSource::SetPosition(const Vector3 &position)
+    {
+        this->position = position;
+    }
+
+    Vector3 AudioSource::GetPosition()
+    {
+        return position;
+    }
+
+    void AudioSource::SetForward(const Vector3 &forward)
+    {
+        this->forward = forward;
+    }
+
+    Vector3 AudioSource::GetForward()
+    {
+        return forward;
+    }
+
+    void AudioSource::SetVelocity(const Vector3 &velocity)
+    {
+        this->velocity = velocity;
+    }
+
+    Vector3 AudioSource::GetVelocity()
+    {
+        return velocity;
+    }
+
+    ma_ex_audio_source *AudioSource::GetHandle() const
+    {
+        return handle;
     }
 };
