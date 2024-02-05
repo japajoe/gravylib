@@ -9,7 +9,7 @@
 
 namespace Gravy::Audio
 {
-    using Vector3 = Gravy::System::Numerics::Vector3;
+    using namespace Gravy::System::Numerics;
     
     enum class AttenuationModel
     {
