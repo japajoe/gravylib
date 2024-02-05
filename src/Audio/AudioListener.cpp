@@ -14,6 +14,7 @@ namespace Gravy::Audio
         if (handle != nullptr)
         {
             ma_ex_audio_listener_set_spatialization(handle, MA_TRUE);
+            AudioManager::Add(this);
         }
     }
 

@@ -33,7 +33,13 @@ namespace Gravy::Audio
                 sources[i]->Dispose();
             }
 
+            for (size_t i = 0; i < listeners.size(); i++)
+            {
+                listeners[i]->Dispose();
+            }
+
             sources.clear();
+            listeners.clear();
 
             ma_ex_context_uninit(context);
             context = nullptr;
