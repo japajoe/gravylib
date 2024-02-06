@@ -6,6 +6,7 @@
 #include "System/Numerics/Vector4.hpp"
 #include "System/Numerics/Matrix3.hpp"
 #include "System/Numerics/Matrix4.hpp"
+#include "System/Numerics/Noise.hpp"
 #include "System/Numerics/SIMD.hpp"
 #include "System/Numerics/Vector2.hpp"
 #include "System/Numerics/Quaternion.hpp"
