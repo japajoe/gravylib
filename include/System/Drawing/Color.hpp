@@ -14,6 +14,8 @@ namespace Gravy::System::Drawing
         Color();
         Color(float r, float g, float b, float a);
         Color(uint32_t color);
+        static Color Lerp(const Color &a, const Color &b, float t);
+        static Color ToGrayScale(const Color &color);
         static Color LightGray();
         static Color Gray();
         static Color DarkGray();

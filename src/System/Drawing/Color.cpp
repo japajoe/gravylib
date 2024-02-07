@@ -1,4 +1,5 @@
 #include "Color.hpp"
+#include "Math.hpp"
 
 namespace Gravy::System::Drawing
 {
@@ -42,6 +43,29 @@ namespace Gravy::System::Drawing
             this->b /= 255.0f;
         if(this->a > 0.0 && this->a > 1.0f)
             this->a /= 255.0f;
+    }
+
+    Color Color::Lerp(const Color &a, const Color &b, float t)
+    {
+        Color c;
+        c.r = Math::Lerp(a.r, b.r, t);
+        c.g = Math::Lerp(a.g, b.g, t);
+        c.b = Math::Lerp(a.b, b.b, t);
+        c.a = Math::Lerp(a.a, b.a, t);
+        return c;
+    }
+
+    Color Color::ToGrayScale(const Color &color)
+    {
+        float v = (color.r + color.g + color.b);
+        if(v > 0.0f)
+            v /= 3.0f;
+        Color c;
+        c.r = v;
+        c.g = v;
+        c.b = v;
+        c.a = color.a;
+        return c;
     }
 
     Color Color::LightGray()
